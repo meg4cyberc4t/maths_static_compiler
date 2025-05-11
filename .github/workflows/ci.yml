@@ -134,9 +134,9 @@ jobs:
 
     runs-on: ubuntu-22.04
 
-    # if: (github.ref == 'refs/heads/master'
-    #   && github.event_name == 'push'
-    #   && github.repository_owner == 'meg4cyberc4t') 
+    if: (github.ref == 'refs/heads/master'
+      && github.event_name == 'push'
+      && github.repository_owner == 'meg4cyberc4t') 
 
     permissions:
       contents: write
