@@ -29,3 +29,12 @@ TEST_CASE("Checking all TokenType's works correctly", "[Lexer]")
   };
   REQUIRE(tokens == exceptedTokens);
 }
+
+TEST_CASE("Incorrect lexemes cause an error", "[Lexer]")
+{
+  using namespace frontend;
+
+  const std::string line = "1 + 11.00 - & 1000 / var123 * (5 - 2)";
+  Lexer lexer = Lexer(line);
+  REQUIRE_THROWS_AS(lexer.scan_tokens(), UnknownLiteralException);
+}
