@@ -5,15 +5,15 @@
 
 namespace frontend
 {
-enum TokenType : uint
+enum TokenType : short
 {
   OPEN_BRACKET,  // (
   CLOSE_BRACKET,  // )
 
   MULTIPLY,  // *
-  PLUS,  // +
-  MINUS,  // -
-  DELIMETER,  // /
+  ADD,  // +
+  SUBTRACT,  // -
+  DELIMITER,  // /
 
   NUMBER,  // 0-9* | 0-9*.0-9*
   VARIABLE,  // a-z*0-9*

@@ -8,7 +8,7 @@ pip3 install conan
 
 conan profile detect -f
 
-std=23
+std=20
 profile="$(conan profile path default)"
 
 mv "$profile" "${profile}.bak"

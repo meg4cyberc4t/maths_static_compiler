@@ -36,7 +36,7 @@ target_include_directories(
     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
 )
 
-target_compile_features(maths_static_compiler_lib PUBLIC cxx_std_23)
+target_compile_features(maths_static_compiler_lib PUBLIC cxx_std_20)
 
 find_package(fmt REQUIRED)
 target_link_libraries(maths_static_compiler_lib PRIVATE fmt::fmt)
@@ -49,7 +49,7 @@ add_executable(maths_static_compiler::exe ALIAS maths_static_compiler_exe)
 
 set_property(TARGET maths_static_compiler_exe PROPERTY OUTPUT_NAME maths_static_compiler)
 
-target_compile_features(maths_static_compiler_exe PRIVATE cxx_std_23)
+target_compile_features(maths_static_compiler_exe PRIVATE cxx_std_20)
 
 target_link_libraries(maths_static_compiler_exe PRIVATE maths_static_compiler_lib)
 

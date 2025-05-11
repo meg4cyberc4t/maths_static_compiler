@@ -17,7 +17,7 @@ target_link_libraries(
     maths_static_compiler_lib
     Catch2::Catch2WithMain
 )
-target_compile_features(maths_static_compiler_test PRIVATE cxx_std_23)
+target_compile_features(maths_static_compiler_test PRIVATE cxx_std_20)
 
 catch_discover_tests(maths_static_compiler_test DISCOVERY_MODE PRE_TEST)
 
