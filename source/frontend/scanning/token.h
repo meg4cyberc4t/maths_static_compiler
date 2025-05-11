@@ -5,7 +5,7 @@
 
 namespace frontend
 {
-enum TokenType : uint
+enum TokenType : short
 {
   OPEN_BRACKET,  // (
   CLOSE_BRACKET,  // )
