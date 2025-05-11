@@ -1,6 +1,6 @@
-# maths_static_compiler
+# maths_static_compiler – WIP
 
-This is the maths_static_compiler project.
+> The status "work in progress" means that the repository is not ready for publication and distribution, it is at the stage of writing the first version of the code
 
 # Building and installing
 
@@ -12,8 +12,7 @@ See the [CONTRIBUTING](CONTRIBUTING.md) document.
 
 # Licensing
 
-<!--
-Please go to https://choosealicense.com/licenses/ and choose a license that
-fits your needs. The recommended license for a project of this type is the
-GNU AGPLv3.
--->
+Apache License 2.0
+See the [LICENSE](LICENSE) document.
+
+

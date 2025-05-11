@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.13.4)
+
 
 include(cmake/prelude.cmake)
 
@@ -13,23 +14,33 @@ project(
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
+
 # ---- Declare library ----
+
+set(
+  FRONTEND_SCANNING_FILES 
+    source/frontend/scanning/exceptions.h 
+    source/frontend/scanning/token.h 
+    source/frontend/scanning/lexer.h 
+    source/frontend/scanning/lexer.cc
+)
 
 add_library(
     maths_static_compiler_lib OBJECT
-    source/lib.cpp
+    ${FRONTEND_SCANNING_FILES}
 )
 
 target_include_directories(
-    maths_static_compiler_lib ${warning_guard}
+  maths_static_compiler_lib ${warning_guard}
     PUBLIC
     "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
 )
 
-target_compile_features(maths_static_compiler_lib PUBLIC cxx_std_17)
+target_compile_features(maths_static_compiler_lib PUBLIC cxx_std_23)
 
 find_package(fmt REQUIRED)
 target_link_libraries(maths_static_compiler_lib PRIVATE fmt::fmt)
+set_target_properties(maths_static_compiler_lib PROPERTIES LINKER_LANGUAGE CXX)
 
 # ---- Declare executable ----
 
@@ -38,7 +49,7 @@ add_executable(maths_static_compiler::exe ALIAS maths_static_compiler_exe)
 
 set_property(TARGET maths_static_compiler_exe PROPERTY OUTPUT_NAME maths_static_compiler)
 
-target_compile_features(maths_static_compiler_exe PRIVATE cxx_std_17)
+target_compile_features(maths_static_compiler_exe PRIVATE cxx_std_23)
 
 target_link_libraries(maths_static_compiler_exe PRIVATE maths_static_compiler_lib)
 
