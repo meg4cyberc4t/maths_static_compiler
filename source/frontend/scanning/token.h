@@ -11,9 +11,9 @@ enum TokenType : uint
   CLOSE_BRACKET,  // )
 
   MULTIPLY,  // *
-  PLUS,  // +
-  MINUS,  // -
-  DELIMETER,  // /
+  ADD,  // +
+  SUBTRACT,  // -
+  DELIMITER,  // /
 
   NUMBER,  // 0-9* | 0-9*.0-9*
   VARIABLE,  // a-z*0-9*

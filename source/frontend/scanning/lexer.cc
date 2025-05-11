@@ -40,9 +40,9 @@ void Lexer::scan_token()
       {'(', TokenType::OPEN_BRACKET},
       {')', TokenType::CLOSE_BRACKET},
       {'*', TokenType::MULTIPLY},
-      {'/', TokenType::DELIMETER},
-      {'+', TokenType::PLUS},
-      {'-', TokenType::MINUS},
+      {'/', TokenType::DELIMITER},
+      {'+', TokenType::ADD},
+      {'-', TokenType::SUBTRACT},
   };
   if (single_character_operators.contains(letter)) {
     add_token(single_character_operators.at(letter));
