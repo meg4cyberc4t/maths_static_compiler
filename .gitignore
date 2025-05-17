@@ -12,3 +12,5 @@ CMakeUserPresets.json
 compile_commands.json
 conan_cache_*.tgz
 CMakeFiles/cmake.check_cache
+
+out/
