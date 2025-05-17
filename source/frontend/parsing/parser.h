@@ -24,7 +24,7 @@ private:
   {
     std::unique_ptr<Expression> expr = factor();
     while (match({TokenType::SUBTRACT, TokenType::ADD})) {
-      expr = std::make_unique<BinaryException>(
+      expr = std::make_unique<BinaryExpression>(
           std::move(expr), previous(), std::move(factor()));
     };
     return expr;
@@ -34,7 +34,7 @@ private:
   {
     std::unique_ptr<Expression> expr = unary();
     while (match({TokenType::DELIMITER, TokenType::MULTIPLY})) {
-      expr = std::make_unique<BinaryException>(
+      expr = std::make_unique<BinaryExpression>(
           std::move(expr), previous(), std::move(unary()));
     };
     return expr;
@@ -42,17 +42,17 @@ private:
 
   std::unique_ptr<Expression> unary()
   {
-    std::unique_ptr<Expression> expr = grouping();
+    std::unique_ptr<Expression> expr = primary();
     if (match({TokenType::SUBTRACT})) {
       expr = std::make_unique<UnaryExpression>(std::move(unary()), previous());
     }
     return expr;
   }
 
-  std::unique_ptr<Expression> grouping()
+  std::unique_ptr<Expression> primary()
   {
     if (match({TokenType::NUMBER})) {
-      return std::make_unique<NumberExpression>(std::stoi(previous().lexeme));
+      return std::make_unique<NumberExpression>(std::stof(previous().lexeme));
     }
     if (match({TokenType::VARIABLE})) {
       return std::make_unique<VariableExpression>(previous());
@@ -63,7 +63,6 @@ private:
       consume(TokenType::CLOSE_BRACKET, "Expect ')' after expression.");
       return std::make_unique<GroupingExpression>(std::move(expr));
     }
-    std::cout << "HERE: " << this->token_index << '\n';
     throw ParseException("Expect expression");
   }
 
@@ -81,16 +80,14 @@ private:
     return false;
   }
 
-  bool check(TokenType type)
+  bool constexpr check(TokenType type)
   {
-    if (isAtEnd())
-      return false;
-    return peek().type == type;
+    return !is_at_end() && peek().type == type;
   }
 
   Token peek() const { return tokens[token_index]; }
 
-  constexpr bool isAtEnd() const { return token_index >= tokens.size(); }
+  bool is_at_end() const { return peek().type == _EOF; }
 
   Token consume(TokenType type, const std::string& message)
   {
@@ -101,7 +98,7 @@ private:
 
   Token advance()
   {
-    if (!isAtEnd()) {
+    if (!is_at_end()) {
       token_index++;
     }
     return previous();

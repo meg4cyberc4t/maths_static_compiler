@@ -17,6 +17,8 @@ enum TokenType : short
 
   NUMBER,  // 0-9* | 0-9*.0-9*
   VARIABLE,  // a-z*0-9*
+
+  _EOF  // End of expression / input
 };
 
 struct Token

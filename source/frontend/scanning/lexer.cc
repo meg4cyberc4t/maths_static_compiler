@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <map>
 #include <vector>
@@ -30,6 +31,7 @@ std::vector<Token> Lexer::scan_tokens()
     scan_token();
     start_index = current_index;
   }
+  add_token(_EOF);
   return tokens;
 }
 

@@ -25,6 +25,7 @@ set(
     source/frontend/scanning/lexer.cc
     source/frontend/parsing/exceptions.h 
     source/frontend/parsing/expression.h
+    source/frontend/parsing/expression.cc
     source/frontend/parsing/parser.h
 )
 

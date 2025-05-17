@@ -11,31 +11,23 @@ namespace frontend
 class Expression
 {
 public:
-  virtual std::string to_string(int indent = 0) = 0;
-
   virtual ~Expression() = default;
+  virtual std::string to_string(int indent = 0) = 0;
 };
 
-class BinaryException : public Expression
+class BinaryExpression : public Expression
 {
 public:
-  BinaryException(std::unique_ptr<Expression> left,
-                  Token token,
-                  std::unique_ptr<Expression> right)
+  BinaryExpression(std::unique_ptr<Expression> left,
+                   Token token,
+                   std::unique_ptr<Expression> right)
       : left(std::move(left))
       , token(token)
       , right(std::move(right))
   {
   }
 
-  std::string to_string(int indent = 0) override
-  {
-    return "(BinaryException:\n" + std::string(indent, ' ') + "left – "
-        + left->to_string(indent + 1) + ",\n" + std::string(indent, ' ')
-        + "token – " + std::to_string(token.type) + ",\n"
-        + std::string(indent, ' ') + "right – " + right->to_string(indent + 1)
-        + ")";
-  }
+  std::string to_string(int indent = 0) override;
 
 private:
   std::unique_ptr<Expression> left;
@@ -51,11 +43,7 @@ public:
   {
   }
 
-  std::string to_string(int indent = 0) override
-  {
-    return std::string(indent, ' ') + "(GroupingExpression: expr – "
-        + expr->to_string(indent + 1) + ")";
-  }
+  std::string to_string(int indent = 0) override;
 
 private:
   std::unique_ptr<Expression> expr;
@@ -69,13 +57,10 @@ public:
   {
   }
 
-  std::string to_string(int indent = 0) override
-  {
-    return "(NumberExpression: value – " + std::to_string(value) + ")";
-  }
+  std::string to_string(int indent = 0) override;
 
 private:
-  float_t value;
+  float value;
 };
 
 class VariableExpression : public Expression
@@ -86,10 +71,7 @@ public:
   {
   }
 
-  std::string to_string(int indent = 0) override
-  {
-    return "(VariableExpression: tokenLexeme – " + token.lexeme + ")";
-  }
+  std::string to_string(int indent = 0) override;
 
 private:
   Token token;
@@ -104,11 +86,7 @@ public:
   {
   }
 
-  std::string to_string(int indent = 0) override
-  {
-    return "(UnaryExpression: token – " + std::to_string(token.type)
-        + ", expr – " + expr->to_string(indent + 1) + ")";
-  }
+  std::string to_string(int indent = 0) override;
 
 private:
   std::unique_ptr<Expression> expr;
