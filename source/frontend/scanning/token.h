@@ -1,42 +1,57 @@
-#ifndef TOKEN_H_
-#define TOKEN_H_
+#ifndef TOKEN_H
+#define TOKEN_H
 
 #include <iostream>
 
 namespace frontend
 {
-enum TokenType : short
+enum token_type : unsigned char
 {
-  OPEN_BRACKET,  // (
-  CLOSE_BRACKET,  // )
+  open_bracket,  // (
+  close_bracket,  // )
 
-  MULTIPLY,  // *
-  ADD,  // +
-  SUBTRACT,  // -
-  DELIMITER,  // /
+  multiply,  // *
+  add,  // +
+  subtract,  // -
+  delimiter,  // /
 
-  NUMBER,  // 0-9* | 0-9*.0-9*
-  VARIABLE,  // a-z*0-9*
+  number,  // 0-9* | 0-9*.0-9*
+  variable,  // a-z*0-9*
+
+  eof  // End of expression / input
 };
 
-struct Token
+struct token
 {
-public:
-  Token(const TokenType type, const std::string lexeme, const std::size_t pos)
-      : lexeme(lexeme)
-      , type(type)
-      , pos(pos)
+  token(const token_type type, std::string lexeme, const std::size_t pos)
+      : m_lexeme(std::move(lexeme))
+      , m_type(type)
+      , m_pos(pos)
   {
   }
 
-  bool operator==(const Token& other) const
+  auto operator==(const token& other) const -> bool
   {
-    return type == other.type && lexeme == other.lexeme && pos == other.pos;
+    return m_type == other.m_type && m_lexeme == other.m_lexeme
+        && m_pos == other.m_pos;
   }
 
-  const std::string lexeme;
-  const TokenType type;
-  const std::size_t pos;
+  auto get_lexeme() const -> std::string { return m_lexeme; }
+
+  auto constexpr get_type() const -> token_type { return m_type; }
+
+  auto constexpr get_pos() const -> std::size_t { return m_pos; }
+
+  auto to_string() const -> std::string
+  {
+    return "Token { type: " + std::to_string(m_type) + ", lexeme: " + m_lexeme
+        + ", position: " + std::to_string(m_pos) + " }";
+  }
+
+private:
+  std::string m_lexeme;
+  token_type m_type;
+  std::size_t m_pos;
 };
 
 }  // namespace frontend

@@ -3,38 +3,39 @@
 #include "frontend/scanning/lexer.h"
 #include "frontend/scanning/token.h"
 
-TEST_CASE("Checking all TokenType's works correctly", "[Lexer]")
+TEST_CASE("Checking all token_type's works correctly", "[lexer]")
 {
   using namespace frontend;
 
   const std::string line = "1 + 11.00 - 1000 / var123 * (5 - 2)";
-  Lexer lexer = Lexer(line);
+  auto lexer = frontend::lexer(line);
   lexer.scan_tokens();
   auto tokens = lexer.get_tokens();
 
-  const std::vector<Token> exceptedTokens {
-      Token(NUMBER, "1", 0),
-      Token(ADD, "+", 2),
-      Token(NUMBER, "11.00", 4),
-      Token(SUBTRACT, "-", 10),
-      Token(NUMBER, "1000", 12),
-      Token(DELIMITER, "/", 17),
-      Token(VARIABLE, "var123", 19),
-      Token(MULTIPLY, "*", 26),
-      Token(OPEN_BRACKET, "(", 28),
-      Token(NUMBER, "5", 29),
-      Token(SUBTRACT, "-", 31),
-      Token(NUMBER, "2", 33),
-      Token(CLOSE_BRACKET, ")", 34),
+  const std::vector<token> exceptedTokens {
+      token(number, "1", 0),
+      token(add, "+", 2),
+      token(number, "11.00", 4),
+      token(subtract, "-", 10),
+      token(number, "1000", 12),
+      token(delimiter, "/", 17),
+      token(variable, "var123", 19),
+      token(multiply, "*", 26),
+      token(open_bracket, "(", 28),
+      token(number, "5", 29),
+      token(subtract, "-", 31),
+      token(number, "2", 33),
+      token(close_bracket, ")", 34),
+      token(eof, "", 35),
   };
   REQUIRE(tokens == exceptedTokens);
 }
 
-TEST_CASE("Incorrect lexemes cause an error", "[Lexer]")
+TEST_CASE("Incorrect lexemes cause an error", "[lexer]")
 {
   using namespace frontend;
 
   const std::string line = "1 + 11.00 - & 1000 / var123 * (5 - 2)";
-  Lexer lexer = Lexer(line);
-  REQUIRE_THROWS_AS(lexer.scan_tokens(), UnknownLiteralException);
+  auto lexer = frontend::lexer(line);
+  REQUIRE_THROWS_AS(lexer.scan_tokens(), unknown_literal_exception);
 }
