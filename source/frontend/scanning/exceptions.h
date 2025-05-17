@@ -9,7 +9,6 @@ class UnknownLiteralException : public std::exception
 {
 public:
   UnknownLiteralException(const std::string& source, std::size_t pos) noexcept
-      : pos(pos)
   {
     std::stringstream ss;
     ss << source.substr(0, pos) << _highlight_start << source.substr(pos, 1)
@@ -24,7 +23,6 @@ public:
 
 private:
   std::string message;
-  std::size_t pos;
 
   const std::string _highlight_start = "\033[1;31m", _highlight_end = "\033[0m";
 };

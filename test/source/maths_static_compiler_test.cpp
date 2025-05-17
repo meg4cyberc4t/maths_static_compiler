@@ -26,6 +26,7 @@ TEST_CASE("Checking all TokenType's works correctly", "[Lexer]")
       Token(SUBTRACT, "-", 31),
       Token(NUMBER, "2", 33),
       Token(CLOSE_BRACKET, ")", 34),
+      Token(_EOF, "", 35),
   };
   REQUIRE(tokens == exceptedTokens);
 }

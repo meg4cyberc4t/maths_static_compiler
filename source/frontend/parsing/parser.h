@@ -25,7 +25,7 @@ private:
     std::unique_ptr<Expression> expr = factor();
     while (match({TokenType::SUBTRACT, TokenType::ADD})) {
       expr = std::make_unique<BinaryExpression>(
-          std::move(expr), previous(), std::move(factor()));
+          std::move(expr), previous(), factor());
     };
     return expr;
   }
@@ -35,7 +35,7 @@ private:
     std::unique_ptr<Expression> expr = unary();
     while (match({TokenType::DELIMITER, TokenType::MULTIPLY})) {
       expr = std::make_unique<BinaryExpression>(
-          std::move(expr), previous(), std::move(unary()));
+          std::move(expr), previous(), unary());
     };
     return expr;
   }
@@ -44,7 +44,7 @@ private:
   {
     std::unique_ptr<Expression> expr = primary();
     if (match({TokenType::SUBTRACT})) {
-      expr = std::make_unique<UnaryExpression>(std::move(unary()), previous());
+      expr = std::make_unique<UnaryExpression>(unary(), previous());
     }
     return expr;
   }
