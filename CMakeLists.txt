@@ -23,6 +23,9 @@ set(
     source/frontend/scanning/token.h 
     source/frontend/scanning/lexer.h 
     source/frontend/scanning/lexer.cc
+    source/frontend/parsing/exceptions.h 
+    source/frontend/parsing/expression.h
+    source/frontend/parsing/parser.h
 )
 
 add_library(
