@@ -20,7 +20,7 @@ std::string _print_tokens(std::vector<frontend::token> tokens)
 
 int exec(int argc, const char* const* argv)
 {
-  __Options options = parse_options(argc, argv);
+  auto options = parse_options(argc, argv);
 
   // Display help message
   if (options.help) {

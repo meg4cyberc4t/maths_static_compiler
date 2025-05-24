@@ -16,23 +16,23 @@
 #  define PROJECT_HOMEPAGE_URL "https://molchanovia.dev/maths_static_compiler"
 #endif
 
-struct __Options
+typedef struct
 {
-  bool help = false;
-  bool version = false;
+  bool help;
+  bool version;
 
-  std::optional<std::string> input_line = std::nullopt;
-  // std::optional<std::string> output_file = std::nullopt;
+  std::optional<std::string> input_line;
+  // std::optional<std::string> output_file;
 
-  bool print_tokens = false;
-  std::optional<std::string> print_tokens_filename = std::nullopt;
-  bool print_syntax_tree = false;
-  std::optional<std::string> print_syntax_tree_filename = std::nullopt;
+  bool print_tokens;
+  std::optional<std::string> print_tokens_filename;
+  bool print_syntax_tree;
+  std::optional<std::string> print_syntax_tree_filename;
 
   boost::program_options::options_description description;
-};
+} ArgsOptions;
 
-__Options parse_options(int argc, const char* const* argv)
+ArgsOptions parse_options(int argc, const char* const* argv)
 {
   namespace po = boost::program_options;
 
@@ -62,7 +62,7 @@ __Options parse_options(int argc, const char* const* argv)
   po::variables_map vm;
   po::store(po::parse_command_line(argc, argv, desc), vm);
   po::notify(vm);
-  return __Options {
+  return ArgsOptions {
       .help = vm.count("help") > 0,
       .version = vm.count("version") > 0,
       .input_line = vm.count("input-line")
@@ -79,7 +79,6 @@ __Options parse_options(int argc, const char* const* argv)
       .print_syntax_tree_filename = vm.count("print-syntax-tree-filename")
           ? vm.at("print-syntax-tree-filename").as<std::string>()
           : std::optional<std::string>(std::nullopt),
-
       .description = desc,
   };
 }

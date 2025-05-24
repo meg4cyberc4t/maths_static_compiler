@@ -82,7 +82,7 @@ private:
     return false;
   }
 
-  bool constexpr check(token_type m_type)
+  bool check(token_type m_type) const
   {
     return !is_at_end() && peek().get_type() == m_type;
   }
@@ -93,8 +93,9 @@ private:
 
   token consume(token_type m_type, const std::string& message)
   {
-    if (check(m_type))
+    if (check(m_type)) {
       return advance();
+    }
     throw parse_exception(message);
   }
 
@@ -105,6 +106,7 @@ private:
     }
     return previous();
   }
+
   token previous() const { return tokens[token_index - 1]; }
 };
 
