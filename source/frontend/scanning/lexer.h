@@ -12,17 +12,17 @@ namespace frontend
 class lexer
 {
 public:
-  explicit lexer(const std::string& source)
-      : m_source(source)
+  lexer(std::string& source)
+      : m_source(std::move(source))
   {
   }
 
-  auto scan_tokens() -> std::vector<token>;
+  std::vector<token> scan_tokens();
 
-  auto get_tokens() const -> std::vector<token> { return m_tokens; }
+  std::vector<token> get_tokens() const { return m_tokens; }
 
 private:
-  const std::string m_source;
+  std::string m_source;
 
   std::vector<token> m_tokens;
 

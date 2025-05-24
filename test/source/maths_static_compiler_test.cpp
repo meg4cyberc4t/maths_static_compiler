@@ -5,12 +5,12 @@
 
 TEST_CASE("Checking all token_type's works correctly", "[lexer]")
 {
-  using namespace frontend;
-
-  const std::string line = "1 + 11.00 - 1000 / var123 * (5 - 2)";
+  std::string line = "1 + 11.00 - 1000 / var123 * (5 - 2)";
   auto lexer = frontend::lexer(line);
   lexer.scan_tokens();
   auto tokens = lexer.get_tokens();
+
+  using namespace frontend;
 
   const std::vector<token> exceptedTokens {
       token(number, "1", 0),
@@ -33,9 +33,7 @@ TEST_CASE("Checking all token_type's works correctly", "[lexer]")
 
 TEST_CASE("Incorrect lexemes cause an error", "[lexer]")
 {
-  using namespace frontend;
-
-  const std::string line = "1 + 11.00 - & 1000 / var123 * (5 - 2)";
+  std::string line = "1 + 11.00 - & 1000 / var123 * (5 - 2)";
   auto lexer = frontend::lexer(line);
   REQUIRE_THROWS_AS(lexer.scan_tokens(), unknown_literal_exception);
 }

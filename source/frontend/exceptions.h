@@ -5,10 +5,10 @@
 #include <iostream>
 #include <sstream>
 
-namespace
+namespace _highlight_constants
 {
-static constexpr const char *highlight_start = "\033[1;31m",
-                            *highlight_end = "\033[0m";
+inline static const std::string HIGHLIGHT_START = "\033[1;31m",
+                                HIGHLIGHT_END = "\033[0m";
 }
 
 class unknown_literal_exception : public std::exception
@@ -18,11 +18,14 @@ public:
                             std::size_t m_pos) noexcept
   {
     std::stringstream sstream;
-    sstream << m_source.substr(0, m_pos) << highlight_start
-            << m_source.substr(m_pos, 1) << highlight_end
+    sstream << m_source.substr(0, m_pos)
+            << _highlight_constants::HIGHLIGHT_START
+            << m_source.substr(m_pos, 1) << _highlight_constants::HIGHLIGHT_END
             << m_source.substr(m_pos + 1, m_source.size() - m_pos + 1) << '\n'
-            << highlight_start << std::string(m_pos, '-') + "^" << '\n'
-            << "Unknown literal at position " << m_pos << highlight_end << '\n';
+            << _highlight_constants::HIGHLIGHT_START
+            << std::string(m_pos, '-') + "^" << '\n'
+            << "Unknown literal at position " << m_pos
+            << _highlight_constants::HIGHLIGHT_END << '\n';
     this->m_message = sstream.str();
   }
 
@@ -39,7 +42,8 @@ class parse_exception : public std::exception
 {
 public:
   explicit parse_exception(const std::string& message)
-      : m_message(highlight_start + message + highlight_end)
+      : m_message(_highlight_constants::HIGHLIGHT_START + message
+                  + _highlight_constants::HIGHLIGHT_END)
   {
   }
 

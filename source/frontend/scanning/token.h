@@ -2,6 +2,7 @@
 #define TOKEN_H
 
 #include <iostream>
+#include <string>
 
 namespace frontend
 {
@@ -30,19 +31,19 @@ struct token
   {
   }
 
-  auto operator==(const token& other) const -> bool
+  bool operator==(const token& other) const
   {
     return m_type == other.m_type && m_lexeme == other.m_lexeme
         && m_pos == other.m_pos;
   }
 
-  auto get_lexeme() const -> std::string { return m_lexeme; }
+  std::string get_lexeme() const { return m_lexeme; }
 
-  auto constexpr get_type() const -> token_type { return m_type; }
+  token_type constexpr get_type() const { return m_type; }
 
-  auto constexpr get_pos() const -> std::size_t { return m_pos; }
+  std::size_t constexpr get_pos() const { return m_pos; }
 
-  auto to_string() const -> std::string
+  std::string to_string() const
   {
     return "Token { type: " + std::to_string(m_type) + ", lexeme: " + m_lexeme
         + ", position: " + std::to_string(m_pos) + " }";

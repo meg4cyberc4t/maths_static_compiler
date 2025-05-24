@@ -26,7 +26,7 @@ auto constexpr is_whitespace(char symbol) -> bool
 namespace frontend
 {
 
-auto lexer::scan_tokens() -> std::vector<token>
+std::vector<token> lexer::scan_tokens()
 {
   while (m_current_index < m_source.size()) {
     scan_token();
