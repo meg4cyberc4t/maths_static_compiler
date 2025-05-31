@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <memory>
+#include <vector>
 
 #include <frontend/exceptions.h>
 #include <frontend/parsing/expression.h>
@@ -54,7 +55,7 @@ private:
   {
     if (match({token_type::number})) {
       return std::make_unique<number_expression>(
-          std::stof(previous().get_lexeme()));
+          std::stold(previous().get_lexeme()));
     }
     if (match({token_type::variable})) {
       return std::make_unique<variable_expression>(previous());
