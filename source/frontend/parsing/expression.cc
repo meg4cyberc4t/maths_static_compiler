@@ -47,9 +47,8 @@ auto unary_expression::to_string(std::size_t indent) -> std::string
   // binary_expression:
   //  token – ...
   //  expr - ..
-  return "unary_expression:\n" + std::string(indent, ' ') + "\n"
-      + std::string(indent, ' ') + "token – " + this->m_token.get_lexeme()
-      + "\n" + std::string(indent, ' ') + "expr – "
+  return "unary_expression:\n" + std::string(indent, ' ') + "token – "
+      + this->m_token.get_lexeme() + "\n" + std::string(indent, ' ') + "expr – "
       + this->m_expr->to_string(indent + 1);
 }
 

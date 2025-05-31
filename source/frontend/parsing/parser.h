@@ -26,8 +26,9 @@ private:
   {
     std::unique_ptr<expression> expr = factor();
     while (match({token_type::subtract, token_type::add})) {
-      expr = std::make_unique<binary_expression>(
-          std::move(expr), previous(), factor());
+      auto prev = previous();
+      expr =
+          std::make_unique<binary_expression>(std::move(expr), prev, factor());
     };
     return expr;
   }
@@ -36,19 +37,20 @@ private:
   {
     std::unique_ptr<expression> expr = unary();
     while (match({token_type::delimiter, token_type::multiply})) {
-      expr = std::make_unique<binary_expression>(
-          std::move(expr), previous(), unary());
+      auto prev = previous();
+      expr =
+          std::make_unique<binary_expression>(std::move(expr), prev, unary());
     };
     return expr;
   }
 
   std::unique_ptr<expression> unary()
   {
-    std::unique_ptr<expression> expr = primary();
     if (match({token_type::subtract})) {
-      expr = std::make_unique<unary_expression>(unary(), previous());
+      auto prev = previous();
+      return std::make_unique<unary_expression>(unary(), prev);
     }
-    return expr;
+    return primary();
   }
 
   std::unique_ptr<expression> primary()
