@@ -16,8 +16,8 @@ TEST_CASE("Checking the operation of factor expressions", "[parser]")
   auto parser = frontend::parser(tokens);
   std::unique_ptr<expression> expr_ptr = parser.parse();
   auto expected_expression = binary_expression(
-      std::make_unique<number_expression>(number_expression(1)),
+      std::make_unique<number_expression>(number_expression(1.000000)),
       token(token_type::add, "+", 1),
-      std::make_unique<number_expression>(number_expression(2)));
-  REQUIRE(&expr_ptr == expected_expression);
+      std::make_unique<number_expression>(number_expression(2.000000)));
+  REQUIRE(expected_expression == *expr_ptr.get());
 }

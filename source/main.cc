@@ -29,14 +29,14 @@ public:
     }
 
     try {
-      auto input_expression = get_input_expression();
+      const auto input_expression = get_input_expression();
 
       // Syntactic analysis
       auto lexer = frontend::lexer(input_expression);
       auto tokens = lexer.scan_tokens();
 
       // Print tokens
-      if (!options.print_tokens && !options.print_tokens_filename.has_value()) {
+      if (options.print_tokens || options.print_tokens_filename.has_value()) {
         print_tokens(tokens);
       }
 
@@ -45,12 +45,12 @@ public:
       auto expr = parser.parse();
 
       // Print AST
-      if (!options.print_syntax_tree
-          && !options.print_syntax_tree_filename.has_value())
+      if (options.print_syntax_tree
+          || options.print_syntax_tree_filename.has_value())
       {
         print_syntax_tree(expr.get());
       }
-    } catch (std::exception exception) {
+    } catch (const std::exception& exception) {
       std::cerr << exception.what();
       return 1;
     }
@@ -84,13 +84,12 @@ private:
   // The [--input_line,-i] flags or requested from the user (std::cin)
   std::string get_input_expression() const
   {
-    std::string input_line;
-    if (!options.input_line.has_value()) {
-      std::cout << "Input the source line:" << std::endl;
-      std::getline(std::cin, input_line);
-    } else {
-      input_line = options.input_line.value();
+    if (options.input_line.has_value()) {
+      return options.input_line.value();
     }
+    std::string input_line;
+    std::cout << "Input the source line:" << std::endl;
+    std::getline(std::cin, input_line);
     return input_line;
   }
 

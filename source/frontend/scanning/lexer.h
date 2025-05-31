@@ -12,7 +12,7 @@ namespace frontend
 class lexer
 {
 public:
-  lexer(std::string& source)
+  lexer(const std::string& source)
       : m_source(std::move(source))
   {
   }
