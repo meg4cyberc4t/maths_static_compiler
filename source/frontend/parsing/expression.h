@@ -81,7 +81,7 @@ private:
 class number_expression : public expression
 {
 public:
-  explicit number_expression(long double value)
+  explicit number_expression(double value)
       : m_value(value)
   {
   }
@@ -97,11 +97,11 @@ public:
     }
     return expression::operator==(other)
         && (std::fabs(m_value - other_casted->m_value)
-            < std::numeric_limits<long double>::epsilon());
+            < std::numeric_limits<double>::epsilon());
   }
 
 private:
-  long double m_value;
+  double m_value;
 };
 
 class variable_expression : public expression
