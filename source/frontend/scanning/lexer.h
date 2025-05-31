@@ -1,33 +1,33 @@
-#ifndef LEXER_H_
-#define LEXER_H_
+#ifndef LEXER_H
+#define LEXER_H
 
 #include <iostream>
 #include <vector>
 
-#include "exceptions.h"
+#include "../exceptions.h"
 #include "token.h"
 
 namespace frontend
 {
-class Lexer
+class lexer
 {
 public:
-  Lexer(const std::string& source)
-      : source(source)
+  lexer(const std::string& source)
+      : m_source(std::move(source))
   {
   }
 
-  std::vector<Token> scan_tokens();
+  std::vector<token> scan_tokens();
 
-  std::vector<Token> get_tokens() const { return tokens; }
+  std::vector<token> get_tokens() const { return m_tokens; }
 
 private:
-  const std::string& source;
+  std::string m_source;
 
-  std::vector<Token> tokens = {};
+  std::vector<token> m_tokens;
 
-  std::size_t start_index = 0;
-  std::size_t current_index = 0;
+  std::size_t m_start_index = 0;
+  std::size_t m_current_index = 0;
 
   void scan_token();
 
@@ -35,7 +35,7 @@ private:
 
   void number();
 
-  void add_token(TokenType type);
+  void add_token(token_type type);
 };
 }  // namespace frontend
 

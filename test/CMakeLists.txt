@@ -11,7 +11,11 @@ include(Catch)
 
 # ---- Tests ----
 
-add_executable(maths_static_compiler_test source/maths_static_compiler_test.cpp)
+add_executable(
+    maths_static_compiler_test 
+    source/lexer_test.cc
+    source/parser_test.cc
+)
 target_link_libraries(
     maths_static_compiler_test PRIVATE
     maths_static_compiler_lib

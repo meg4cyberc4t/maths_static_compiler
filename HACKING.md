@@ -112,8 +112,8 @@ the project respectively with the following commands from the project root on
 any operating system with any build system:
 
 ```sh
-cmake --preset=dev
-cmake --build --preset=dev
+cmake --preset=dev;
+cmake --build --preset=dev;
 ctest --preset=dev
 ```
 
