@@ -1,12 +1,12 @@
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
 
-#include <cmath>
 #include <iostream>
 #include <limits>
 #include <memory>
 
 #include <frontend/scanning/token.h>
+#include <math.h>
 
 namespace frontend
 {
