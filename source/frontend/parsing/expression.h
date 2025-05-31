@@ -96,8 +96,7 @@ public:
       return false;  // Not the equal type
     }
     return expression::operator==(other)
-        && (std::fabs(m_value - other_casted->m_value)
-            < std::numeric_limits<double>::epsilon());
+        && (std::fabs(m_value - other_casted->m_value) < 1e-9);
   }
 
 private:
