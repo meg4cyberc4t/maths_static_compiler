@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>UnknownLiteralException class | maths_static_compiler</title>
+  <title>frontend::parser class | maths_static_compiler</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -31,8 +31,9 @@
               </ol>
             </li>
             <li><a href="namespaces.html">Namespaces</a></li>
+            <li><a href="modules.html">Modules</a></li>
           </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
+          <ol class="m-col-t-6 m-col-m-none" start="4">
             <li><a href="annotated.html">Classes</a></li>
             <li><a href="files.html">Files</a></li>
             <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
@@ -49,11 +50,11 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          UnknownLiteralException <span class="m-thin">class</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="exceptions_8h.html">&lt;exceptions.h&gt;</a></div>
+          <span class="m-breadcrumb"><a href="namespacefrontend.html">frontend</a>::<wbr/></span>parser <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="parser_8h.html">&lt;source/frontend/parsing/parser.h&gt;</a></div>
         </h1>
         <p><span></span></p>
-        <div class="m-block m-default">
+        <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
             <li>
@@ -61,17 +62,15 @@
               <ul>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
-                <li><a href="#pro-attribs">Protected variables</a></li>
               </ul>
             </li>
           </ul>
-        </div>
+        </nav>
         <section id="typeless-methods">
           <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
           <dl class="m-doc">
-            <dt id="a73c2c18cdcf4bc8b9ea3d7a067c3c5bf">
-              <span class="m-doc-wrap-bumper"><a href="#a73c2c18cdcf4bc8b9ea3d7a067c3c5bf" class="m-doc-self">UnknownLiteralException</a>(</span><span class="m-doc-wrap">const std::string&amp; source,
-              std::size_t pos) <span class="m-label m-flat m-success">noexcept</span></span>
+            <dt id="afe8383563d80e9aa18e02bc337e55217">
+              <span class="m-doc-wrap-bumper"><a href="#afe8383563d80e9aa18e02bc337e55217" class="m-doc-self">parser</a>(</span><span class="m-doc-wrap">std::vector&lt;<a href="structfrontend_1_1token.html" class="m-doc">frontend::<wbr />token</a>&gt; tokens)</span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -79,21 +78,8 @@
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-doc">
-            <dt id="a5dbdbbf630b3d772eaf725775d36f3ad">
-              <span class="m-doc-wrap-bumper">auto <a href="#a5dbdbbf630b3d772eaf725775d36f3ad" class="m-doc-self">what</a>(</span><span class="m-doc-wrap">) const -&gt; const char* <span class="m-label m-flat m-success">noexcept</span></span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pro-attribs">
-          <h2><a href="#pro-attribs">Protected variables</a></h2>
-          <dl class="m-doc">
-            <dt id="ad43f721250fbc1c98c470dba1de4d579">
-              std::size_t <a href="#ad43f721250fbc1c98c470dba1de4d579" class="m-doc-self">pos</a>
-            </dt>
-            <dd><span></span></dd>
-            <dt id="a50a368ec4840bddc64ecf7b12acd8793">
-              const std::string&amp; <a href="#a50a368ec4840bddc64ecf7b12acd8793" class="m-doc-self">source</a>
+            <dt id="af86fec29b681021df7639c44f51dbe5b">
+              <span class="m-doc-wrap-bumper">auto <a href="#af86fec29b681021df7639c44f51dbe5b" class="m-doc-self">parse</a>(</span><span class="m-doc-wrap">) -&gt; std::unique_ptr&lt;<a href="classfrontend_1_1expression.html" class="m-doc">expression</a>&gt;</span>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -136,13 +122,13 @@
     </div>
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
+<script src="search-v2.js"></script>
+<script src="searchdata-v2.js" async="async"></script>
 <footer><nav>
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>maths_static_compiler. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>maths_static_compiler. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.8 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>

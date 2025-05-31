@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>README.md file | maths_static_compiler</title>
+  <title>frontend::expression class | maths_static_compiler</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -31,8 +31,9 @@
               </ol>
             </li>
             <li><a href="namespaces.html">Namespaces</a></li>
+            <li><a href="modules.html">Modules</a></li>
           </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
+          <ol class="m-col-t-6 m-col-m-none" start="4">
             <li><a href="annotated.html">Classes</a></li>
             <li><a href="files.html">Files</a></li>
             <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
@@ -49,9 +50,70 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          README.md <span class="m-thin">file</span>
+          <span class="m-breadcrumb"><a href="namespacefrontend.html">frontend</a>::<wbr/></span>expression <span class="m-thin">class</span>
+          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="expression_8h.html">&lt;source/frontend/parsing/expression.h&gt;</a></div>
         </h1>
         <p><span></span></p>
+        <nav class="m-block m-default">
+          <h3>Contents</h3>
+          <ul>
+            <li>
+              Reference
+              <ul>
+                <li><a href="#derived-classes">Derived classes</a></li>
+                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
+                <li><a href="#pub-methods">Public functions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <section id="derived-classes">
+          <h2><a href="#derived-classes">Derived classes</a></h2>
+          <dl class="m-doc">
+            <dt>
+              class <a href="classfrontend_1_1binary__expression.html" class="m-doc">binary_expression</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1grouping__expression.html" class="m-doc">grouping_expression</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1number__expression.html" class="m-doc">number_expression</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1unary__expression.html" class="m-doc">unary_expression</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1variable__expression.html" class="m-doc">variable_expression</a>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="typeless-methods">
+          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+          <dl class="m-doc">
+            <dt id="a085019323702eb22ac7e9d33a3e8c36c">
+              <span class="m-doc-wrap-bumper"><a href="#a085019323702eb22ac7e9d33a3e8c36c" class="m-doc-self">~expression</a>(</span><span class="m-doc-wrap">) <span class="m-label m-flat m-info">defaulted</span> <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
+        <section id="pub-methods">
+          <h2><a href="#pub-methods">Public functions</a></h2>
+          <dl class="m-doc">
+            <dt id="a52bc54eb5bc447e29b6a7e9c3182d1a5">
+              <span class="m-doc-wrap-bumper">auto <a href="#a52bc54eb5bc447e29b6a7e9c3182d1a5" class="m-doc-self">to_string</a>(</span><span class="m-doc-wrap">std::size_t indent) -&gt; std::string -&gt; auto <span class="m-label m-flat m-warning">pure virtual</span></span>
+            </dt>
+            <dd><span></span></dd>
+            <dt id="af9e0a734e95756c95a80b19ff2250a6c">
+              <span class="m-doc-wrap-bumper">auto <a href="#af9e0a734e95756c95a80b19ff2250a6c" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="classfrontend_1_1expression.html" class="m-doc">expression</a>&amp; other) const -&gt; bool <span class="m-label m-flat m-warning">virtual</span></span>
+            </dt>
+            <dd><span></span></dd>
+          </dl>
+        </section>
       </div>
     </div>
   </div>
@@ -90,13 +152,13 @@
     </div>
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
+<script src="search-v2.js"></script>
+<script src="searchdata-v2.js" async="async"></script>
 <footer><nav>
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>maths_static_compiler. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>maths_static_compiler. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.8 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>

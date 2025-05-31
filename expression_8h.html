@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>frontend::Token struct | maths_static_compiler</title>
+  <title>source/frontend/parsing/expression.h file | maths_static_compiler</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i%7CSource+Code+Pro:400,400i,600" />
   <link rel="stylesheet" href="m-dark+documentation.compiled.css" />
   <link rel="icon" href="favicon-dark.png" type="image/png" />
@@ -31,8 +31,9 @@
               </ol>
             </li>
             <li><a href="namespaces.html">Namespaces</a></li>
+            <li><a href="modules.html">Modules</a></li>
           </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
+          <ol class="m-col-t-6 m-col-m-none" start="4">
             <li><a href="annotated.html">Classes</a></li>
             <li><a href="files.html">Files</a></li>
             <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
@@ -49,56 +50,53 @@
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
         <h1>
-          <span class="m-breadcrumb"><a href="namespacefrontend.html">frontend</a>::<wbr/></span>Token <span class="m-thin">struct</span>
-          <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="token_8h.html">&lt;token.h&gt;</a></div>
+          <span class="m-breadcrumb"><a href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a>/</span><span class="m-breadcrumb"><a href="dir_5f08e79d74d1ffa84b469f2dc8c33e88.html">frontend</a>/</span><span class="m-breadcrumb"><a href="dir_e333a79544d07838be1816d6de38a7b7.html">parsing</a>/</span>expression.h <span class="m-thin">file</span>
         </h1>
         <p><span></span></p>
-        <div class="m-block m-default">
+        <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
             <li>
               Reference
               <ul>
-                <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
-                <li><a href="#pub-methods">Public functions</a></li>
-                <li><a href="#pub-attribs">Public variables</a></li>
+                <li><a href="#namespaces">Namespaces</a></li>
+                <li><a href="#nested-classes">Classes</a></li>
               </ul>
             </li>
           </ul>
-        </div>
-        <section id="typeless-methods">
-          <h2><a href="#typeless-methods">Constructors, destructors, conversion operators</a></h2>
+        </nav>
+        <section id="namespaces">
+          <h2><a href="#namespaces">Namespaces</a></h2>
           <dl class="m-doc">
-            <dt id="a88cacb859d3669ad682ebd7e0a952027">
-              <span class="m-doc-wrap-bumper"><a href="#a88cacb859d3669ad682ebd7e0a952027" class="m-doc-self">Token</a>(</span><span class="m-doc-wrap">const <a href="namespacefrontend.html#a22f167c2f707ed6fa28a90ac3f5bd667" class="m-doc">TokenType</a> type,
-              const std::string lexeme,
-              const std::size_t pos)</span>
-            </dt>
+            <dt>namespace <a href="namespacefrontend.html" class="m-doc">frontend</a></dt>
             <dd><span></span></dd>
           </dl>
         </section>
-        <section id="pub-methods">
-          <h2><a href="#pub-methods">Public functions</a></h2>
+        <section id="nested-classes">
+          <h2><a href="#nested-classes">Classes</a></h2>
           <dl class="m-doc">
-            <dt id="a800cba3318e0aae522389921980b7d80">
-              <span class="m-doc-wrap-bumper">auto <a href="#a800cba3318e0aae522389921980b7d80" class="m-doc-self">operator==</a>(</span><span class="m-doc-wrap">const <a href="structfrontend_1_1Token.html" class="m-doc">Token</a>&amp; other) const -&gt; bool</span>
+            <dt>
+              class <a href="classfrontend_1_1expression.html" class="m-doc">frontend::expression</a>
             </dt>
             <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="pub-attribs">
-          <h2><a href="#pub-attribs">Public variables</a></h2>
-          <dl class="m-doc">
-            <dt id="a9246583ee14d0f3656b69824116657f0">
-              const std::string <a href="#a9246583ee14d0f3656b69824116657f0" class="m-doc-self">lexeme</a>
+            <dt>
+              class <a href="classfrontend_1_1binary__expression.html" class="m-doc">frontend::binary_expression</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a5622026f5f02cb2705761414fb3dd36c">
-              const <a href="namespacefrontend.html#a22f167c2f707ed6fa28a90ac3f5bd667" class="m-doc">TokenType</a> <a href="#a5622026f5f02cb2705761414fb3dd36c" class="m-doc-self">type</a>
+            <dt>
+              class <a href="classfrontend_1_1grouping__expression.html" class="m-doc">frontend::grouping_expression</a>
             </dt>
             <dd><span></span></dd>
-            <dt id="a8d72b18627003c5f5d79098f58764d1e">
-              const std::size_t <a href="#a8d72b18627003c5f5d79098f58764d1e" class="m-doc-self">pos</a>
+            <dt>
+              class <a href="classfrontend_1_1number__expression.html" class="m-doc">frontend::number_expression</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1variable__expression.html" class="m-doc">frontend::variable_expression</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1unary__expression.html" class="m-doc">frontend::unary_expression</a>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -141,13 +139,13 @@
     </div>
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
+<script src="search-v2.js"></script>
+<script src="searchdata-v2.js" async="async"></script>
 <footer><nav>
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>maths_static_compiler. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>maths_static_compiler. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.8 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>

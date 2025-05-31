@@ -31,8 +31,9 @@
               </ol>
             </li>
             <li><a href="namespaces.html">Namespaces</a></li>
+            <li><a href="modules.html">Modules</a></li>
           </ol>
-          <ol class="m-col-t-6 m-col-m-none" start="3">
+          <ol class="m-col-t-6 m-col-m-none" start="4">
             <li><a href="annotated.html">Classes</a></li>
             <li><a href="files.html">Files</a></li>
             <li class="m-show-m"><a href="#search" class="m-doc-search-icon" title="Search" onclick="return showSearch()"><svg style="height: 0.9rem;" viewBox="0 0 16 16">
@@ -52,7 +53,7 @@
           frontend <span class="m-thin">namespace</span>
         </h1>
         <p><span></span></p>
-        <div class="m-block m-default">
+        <nav class="m-block m-default">
           <h3>Contents</h3>
           <ul>
             <li>
@@ -60,20 +61,47 @@
               <ul>
                 <li><a href="#nested-classes">Classes</a></li>
                 <li><a href="#enum-members">Enums</a></li>
-                <li><a href="#func-members">Functions</a></li>
               </ul>
             </li>
           </ul>
-        </div>
+        </nav>
         <section id="nested-classes">
           <h2><a href="#nested-classes">Classes</a></h2>
           <dl class="m-doc">
             <dt>
-              class <a href="classfrontend_1_1Lexer.html" class="m-doc">Lexer</a>
+              class <a href="classfrontend_1_1binary__expression.html" class="m-doc">binary_expression</a>
             </dt>
             <dd><span></span></dd>
             <dt>
-              struct <a href="structfrontend_1_1Token.html" class="m-doc">Token</a>
+              class <a href="classfrontend_1_1expression.html" class="m-doc">expression</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1grouping__expression.html" class="m-doc">grouping_expression</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1lexer.html" class="m-doc">lexer</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1number__expression.html" class="m-doc">number_expression</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1parser.html" class="m-doc">parser</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              struct <a href="structfrontend_1_1token.html" class="m-doc">token</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1unary__expression.html" class="m-doc">unary_expression</a>
+            </dt>
+            <dd><span></span></dd>
+            <dt>
+              class <a href="classfrontend_1_1variable__expression.html" class="m-doc">variable_expression</a>
             </dt>
             <dd><span></span></dd>
           </dl>
@@ -82,65 +110,25 @@
           <h2><a href="#enum-members">Enums</a></h2>
           <dl class="m-doc">
             <dt>
-              <span class="m-doc-wrap-bumper">enum <a href="#a22f167c2f707ed6fa28a90ac3f5bd667" class="m-doc">TokenType</a>: short { </span><span class="m-doc-wrap"><a href="#a22f167c2f707ed6fa28a90ac3f5bd667a356c248363cc418426cefa0fcd9e1d27" class="m-doc">OPEN_BRACKET</a>,
-              <a href="#a22f167c2f707ed6fa28a90ac3f5bd667aa5de673edf01538d4d3838677c08eec4" class="m-doc">CLOSE_BRACKET</a>,
-              <a href="#a22f167c2f707ed6fa28a90ac3f5bd667ae19a890e1d89836e6cf97abaf9a1d773" class="m-doc">MULTIPLY</a>,
-              <a href="#a22f167c2f707ed6fa28a90ac3f5bd667a99b7a352752cbce6f4fe1d2b2a85a14f" class="m-doc">ADD</a>,
-              <a href="#a22f167c2f707ed6fa28a90ac3f5bd667a5fa79277ef3b01e53dc1aaad83463903" class="m-doc">SUBTRACT</a>,
-              <a href="#a22f167c2f707ed6fa28a90ac3f5bd667ad73f1205e6a483e796955d86d885bd0c" class="m-doc">DELIMITER</a>,
-              <a href="#a22f167c2f707ed6fa28a90ac3f5bd667a78e12744e9979a557507ba81fbf7b2e6" class="m-doc">NUMBER</a>,
-              <a href="#a22f167c2f707ed6fa28a90ac3f5bd667abfc5d493b24729cf8e8fb7ff7ad5b5d3" class="m-doc">VARIABLE</a> }</span>
-            </dt>
-            <dd><span></span></dd>
-          </dl>
-        </section>
-        <section id="func-members">
-          <h2><a href="#func-members">Functions</a></h2>
-          <dl class="m-doc">
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a0553ec70cfe1abc6e23af41ea3485809" class="m-doc">is_number</a>(</span><span class="m-doc-wrap">char symbol) -&gt; bool <span class="m-label m-flat m-primary">constexpr</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a1c909a97ea09fb3d172fd2070aadb2f7" class="m-doc">is_alpha</a>(</span><span class="m-doc-wrap">char symbol) -&gt; bool <span class="m-label m-flat m-primary">constexpr</span></span>
-            </dt>
-            <dd><span></span></dd>
-            <dt>
-              <span class="m-doc-wrap-bumper">auto <a href="#a2a2f58ff2be7eba9afac1f5096284e0d" class="m-doc">is_whitespace</a>(</span><span class="m-doc-wrap">char symbol) -&gt; bool <span class="m-label m-flat m-primary">constexpr</span></span>
+              <span class="m-doc-wrap-bumper">enum <a href="#a148267068f12e40c1793c095999d31fb" class="m-doc">token_type</a>: unsigned char { </span><span class="m-doc-wrap"><a href="#a148267068f12e40c1793c095999d31fba4780db370220a18ca5b25fc5b8db6865" class="m-doc">open_bracket</a>,
+              <a href="#a148267068f12e40c1793c095999d31fbae19381b26489e221d1d8c6cf5f6f46a3" class="m-doc">close_bracket</a>,
+              <a href="#a148267068f12e40c1793c095999d31fba6fb46bf7a4777e25d3c01ec71e7200af" class="m-doc">multiply</a>,
+              <a href="#a148267068f12e40c1793c095999d31fbad1fd843b924af72d4da98060f6948e09" class="m-doc">add</a>,
+              <a href="#a148267068f12e40c1793c095999d31fba27d9b345a1cc259c6634f0b0aba8e490" class="m-doc">subtract</a>,
+              <a href="#a148267068f12e40c1793c095999d31fbabefa299941a49e8ba41c8bc1e9639337" class="m-doc">delimiter</a>,
+              <a href="#a148267068f12e40c1793c095999d31fbaafea03ec92c7df6e7555f020176754d2" class="m-doc">number</a>,
+              <a href="#a148267068f12e40c1793c095999d31fbaa4056c002288782c02fe4fdf7a97836d" class="m-doc">variable</a>,
+              <a href="#a148267068f12e40c1793c095999d31fba8d206b7556a285a24de1a7285c8a0914" class="m-doc">eof</a> }</span>
             </dt>
             <dd><span></span></dd>
           </dl>
         </section>
         <section>
           <h2>Enum documentation</h2>
-          <section class="m-doc-details" id="a22f167c2f707ed6fa28a90ac3f5bd667"><div>
+          <section class="m-doc-details" id="a148267068f12e40c1793c095999d31fb"><div>
             <h3>
-              enum frontend::<wbr /><a href="#a22f167c2f707ed6fa28a90ac3f5bd667" class="m-doc-self">TokenType</a>: short
+              enum frontend::<wbr /><a href="#a148267068f12e40c1793c095999d31fb" class="m-doc-self">token_type</a>: unsigned char
               <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="token_8h.html">&lt;source/frontend/scanning/token.h&gt;</a></div>
-            </h3>
-            <p><span></span></p>
-          </div></section>
-        </section>
-        <section>
-          <h2>Function documentation</h2>
-          <section class="m-doc-details" id="a0553ec70cfe1abc6e23af41ea3485809"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool frontend::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a0553ec70cfe1abc6e23af41ea3485809" class="m-doc-self">is_number</a>(</span><span class="m-doc-wrap">char symbol) <span class="m-label m-primary">constexpr</span></span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="lexer_8cc.html">&lt;source/frontend/scanning/lexer.cc&gt;</a></div>
-            </h3>
-            <p><span></span></p>
-          </div></section>
-          <section class="m-doc-details" id="a1c909a97ea09fb3d172fd2070aadb2f7"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool frontend::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a1c909a97ea09fb3d172fd2070aadb2f7" class="m-doc-self">is_alpha</a>(</span><span class="m-doc-wrap">char symbol) <span class="m-label m-primary">constexpr</span></span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="lexer_8cc.html">&lt;source/frontend/scanning/lexer.cc&gt;</a></div>
-            </h3>
-            <p><span></span></p>
-          </div></section>
-          <section class="m-doc-details" id="a2a2f58ff2be7eba9afac1f5096284e0d"><div>
-            <h3>
-              <span class="m-doc-wrap-bumper">bool frontend::<wbr /></span><span class="m-doc-wrap"><span class="m-doc-wrap-bumper"><a href="#a2a2f58ff2be7eba9afac1f5096284e0d" class="m-doc-self">is_whitespace</a>(</span><span class="m-doc-wrap">char symbol) <span class="m-label m-primary">constexpr</span></span></span>
-              <div class="m-doc-include m-code m-inverted m-text-right"><span class="cp">#include</span> <a class="cpf" href="lexer_8cc.html">&lt;source/frontend/scanning/lexer.cc&gt;</a></div>
             </h3>
             <p><span></span></p>
           </div></section>
@@ -183,13 +171,13 @@
     </div>
   </div>
 </div>
-<script src="search-v1.js"></script>
-<script src="searchdata-v1.js" async="async"></script>
+<script src="search-v2.js"></script>
+<script src="searchdata-v2.js" async="async"></script>
 <footer><nav>
   <div class="m-container">
     <div class="m-row">
       <div class="m-col-l-10 m-push-l-1">
-        <p>maths_static_compiler. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.1 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
+        <p>maths_static_compiler. Created with <a href="https://doxygen.org/">Doxygen</a> 1.9.8 and <a href="https://mcss.mosra.cz/">m.css</a>.</p>
       </div>
     </div>
   </div>
