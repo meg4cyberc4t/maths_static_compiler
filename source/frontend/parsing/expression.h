@@ -37,7 +37,7 @@ public:
   bool operator==(const expression& other) const override
   {
     const binary_expression* other_casted =
-        dynamic_cast<const binary_expression*>(&other);
+        static_cast<const binary_expression*>(&other);
     if (!other_casted) {
       return false;  // Not the equal type
     }
@@ -66,7 +66,7 @@ public:
   bool operator==(const expression& other) const override
   {
     const grouping_expression* other_casted =
-        dynamic_cast<const grouping_expression*>(&other);
+        static_cast<const grouping_expression*>(&other);
     if (!other_casted) {
       return false;  // Not the equal type
     }
@@ -81,7 +81,7 @@ private:
 class number_expression : public expression
 {
 public:
-  explicit number_expression(double value)
+  explicit number_expression(long double value)
       : m_value(value)
   {
   }
@@ -91,16 +91,17 @@ public:
   bool operator==(const expression& other) const override
   {
     const number_expression* other_casted =
-        dynamic_cast<const number_expression*>(&other);
+        static_cast<const number_expression*>(&other);
     if (!other_casted) {
       return false;  // Not the equal type
     }
     return expression::operator==(other)
-        && (std::fabs(m_value - other_casted->m_value) < 1e-9);
+        && (std::fabsl(m_value - other_casted->m_value)
+            < std::numeric_limits<long double>::epsilon());
   }
 
 private:
-  double m_value;
+  long double m_value;
 };
 
 class variable_expression : public expression
@@ -124,7 +125,7 @@ public:
   bool operator==(const expression& other) const override
   {
     const variable_expression* other_casted =
-        dynamic_cast<const variable_expression*>(&other);
+        static_cast<const variable_expression*>(&other);
     if (!other_casted) {
       return false;  // Not the equal type
     }
@@ -149,7 +150,7 @@ public:
   bool operator==(const expression& other) const override
   {
     const unary_expression* other_casted =
-        dynamic_cast<const unary_expression*>(&other);
+        static_cast<const unary_expression*>(&other);
     if (!other_casted) {
       return false;  // Not the equal type
     }

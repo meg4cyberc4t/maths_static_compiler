@@ -55,7 +55,7 @@ private:
   {
     if (match({token_type::number})) {
       return std::make_unique<number_expression>(
-          std::stod(previous().get_lexeme()));
+          std::stold(previous().get_lexeme()));
     }
     if (match({token_type::variable})) {
       return std::make_unique<variable_expression>(previous());
