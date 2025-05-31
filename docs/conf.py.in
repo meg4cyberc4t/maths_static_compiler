@@ -3,4 +3,10 @@ DOXYFILE = 'Doxyfile'
 LINKS_NAVBAR1 = [
     (None, 'pages', [(None, 'about')]),
     (None, 'namespaces', []),
+    ("Modules", 'modules', [])
+]
+
+LINKS_NAVBAR2 = [
+    ("Classes", 'annotated', []),
+    ("Files", 'files', [])
 ]
