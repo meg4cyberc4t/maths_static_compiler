@@ -24,10 +24,10 @@ class binary_expression : public expression
 {
 public:
   binary_expression(std::unique_ptr<expression> left,
-                    token token,
+                    const token token,
                     std::unique_ptr<expression> right)
       : m_left(std::move(left))
-      , m_token(std::move(token))
+      , m_token(token)
       , m_right(std::move(right))
   {
   }
