@@ -37,13 +37,13 @@ public:
   bool operator==(const expression& other) const override
   {
     const binary_expression* other_casted =
-        static_cast<const binary_expression*>(&other);
+        dynamic_cast<const binary_expression*>(&other);
     if (!other_casted) {
       return false;  // Not the equal type
     }
     return expression::operator==(other)
-        && (*m_left == *other_casted->m_left.get()
-            && *m_right == *other_casted->m_right.get()
+        && (*m_left == *other_casted->m_left
+            && *m_right == *other_casted->m_right
             && m_token == other_casted->m_token);
   }
 
@@ -66,12 +66,11 @@ public:
   bool operator==(const expression& other) const override
   {
     const grouping_expression* other_casted =
-        static_cast<const grouping_expression*>(&other);
+        dynamic_cast<const grouping_expression*>(&other);
     if (!other_casted) {
       return false;  // Not the equal type
     }
-    return expression::operator==(other)
-        && *m_expr == *other_casted->m_expr.get();
+    return expression::operator==(other) && *m_expr == *other_casted->m_expr;
   }
 
 private:
@@ -91,7 +90,7 @@ public:
   bool operator==(const expression& other) const override
   {
     const number_expression* other_casted =
-        static_cast<const number_expression*>(&other);
+        dynamic_cast<const number_expression*>(&other);
     if (!other_casted) {
       return false;  // Not the equal type
     }
@@ -116,7 +115,7 @@ public:
 
   bool operator==(const expression* other) const
   {
-    if (auto other_ptr = static_cast<const variable_expression*>(other)) {
+    if (auto other_ptr = dynamic_cast<const variable_expression*>(other)) {
       return m_token == other_ptr->m_token;
     }
     return false;
@@ -125,7 +124,7 @@ public:
   bool operator==(const expression& other) const override
   {
     const variable_expression* other_casted =
-        static_cast<const variable_expression*>(&other);
+        dynamic_cast<const variable_expression*>(&other);
     if (!other_casted) {
       return false;  // Not the equal type
     }
@@ -150,12 +149,12 @@ public:
   bool operator==(const expression& other) const override
   {
     const unary_expression* other_casted =
-        static_cast<const unary_expression*>(&other);
+        dynamic_cast<const unary_expression*>(&other);
     if (!other_casted) {
       return false;  // Not the equal type
     }
     return expression::operator==(other)
-        && (*m_expr == *other_casted->m_expr.get()
+        && (*m_expr == *other_casted->m_expr
             && m_token == other_casted->m_token);
   }
 

@@ -19,5 +19,7 @@ TEST_CASE("Checking the operation of factor expressions", "[parser]")
       std::make_unique<number_expression>(number_expression(1.000000)),
       token(token_type::add, "+", 1),
       std::make_unique<number_expression>(number_expression(2.000000)));
-  REQUIRE(expected_expression == *expr_ptr.get());
+  INFO(expected_expression.to_string(0));
+  INFO(expr_ptr->to_string(0));
+  REQUIRE(expected_expression == *expr_ptr);
 }
