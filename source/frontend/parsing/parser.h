@@ -83,7 +83,7 @@ private:
     return false;
   }
 
-  bool check(token_type m_type) const
+  constexpr bool check(token_type m_type) const
   {
     return !is_at_end() && peek().get_type() == m_type;
   }
@@ -103,7 +103,7 @@ private:
   token advance()
   {
     if (!is_at_end()) {
-      token_index++;
+      token_index += 1;
     }
     return previous();
   }
