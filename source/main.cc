@@ -4,7 +4,8 @@
 #include <boost/program_options.hpp>
 
 #include "args.cc"
-#include "frontend/exceptions.h"
+#include "backend/control_flow_builder.h"
+#include "exceptions.h"
 #include "frontend/parsing/expression.h"
 #include "frontend/parsing/parser.h"
 #include "frontend/scanning/lexer.h"
@@ -50,6 +51,15 @@ public:
       {
         print_syntax_tree(expr.get());
       }
+
+      auto cfb = backend::control_flow_builder();
+
+      cfb.add_expression(*expr);
+
+      cfb.optimize();
+
+      cfb.execute();
+
     } catch (const std::exception& exception) {
       std::cerr << exception.what();
       return 1;

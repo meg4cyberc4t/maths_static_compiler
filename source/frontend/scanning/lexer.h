@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../exceptions.h"
+#include "exceptions.h"
 #include "token.h"
 
 namespace frontend

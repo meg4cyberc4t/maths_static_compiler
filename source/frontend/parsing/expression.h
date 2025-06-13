@@ -10,7 +10,9 @@
 
 namespace frontend
 {
+
 class expression
+
 {
 public:
   virtual ~expression() = default;
@@ -47,6 +49,12 @@ public:
             && m_token == other_casted->m_token);
   }
 
+  constexpr expression* get_left() const { return m_left.get(); }
+
+  token get_token() const { return m_token; }
+
+  constexpr expression* get_right() const { return m_right.get(); }
+
 private:
   const std::unique_ptr<expression> m_left;
   const token m_token;
@@ -73,6 +81,8 @@ public:
     return expression::operator==(other) && *m_expr == *other_casted->m_expr;
   }
 
+  expression* get_expr() const { return m_expr.get(); }
+
 private:
   const std::unique_ptr<expression> m_expr;
 };
@@ -98,6 +108,8 @@ public:
         && (std::fabs(m_value - other_casted->m_value)
             < std::numeric_limits<double>::epsilon());
   }
+
+  constexpr double get_value() const { return m_value; }
 
 private:
   double m_value;
@@ -131,6 +143,8 @@ public:
     return expression::operator==(other) && (m_token == other_casted->m_token);
   }
 
+  token get_token() const { return m_token; }
+
 private:
   token m_token;
 };
@@ -157,6 +171,10 @@ public:
         && (*m_expr == *other_casted->m_expr
             && m_token == other_casted->m_token);
   }
+
+  constexpr expression* get_expr() const { return m_expr.get(); }
+
+  token get_token() const { return m_token; }
 
 private:
   const std::unique_ptr<expression> m_expr;

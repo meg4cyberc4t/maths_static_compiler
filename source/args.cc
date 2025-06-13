@@ -3,7 +3,7 @@
 
 #include <boost/program_options.hpp>
 
-#include "frontend/exceptions.h"
+#include "exceptions.h"
 #include "frontend/parsing/expression.h"
 #include "frontend/parsing/parser.h"
 #include "frontend/scanning/lexer.h"

@@ -23,20 +23,18 @@ include(cmake/variables.cmake)
 
 # ---- Declare library ----
 
-set(
-  FRONTEND_FILES 
-    source/frontend/exceptions.h 
+
+add_library(
+    maths_static_compiler_lib OBJECT
+    source/exceptions.h 
     source/frontend/scanning/token.h 
     source/frontend/scanning/lexer.h 
     source/frontend/scanning/lexer.cc
     source/frontend/parsing/expression.h
     source/frontend/parsing/expression.cc
     source/frontend/parsing/parser.h
-)
-
-add_library(
-    maths_static_compiler_lib OBJECT
-    ${FRONTEND_FILES}
+    source/backend/control_flow_builder.h
+    source/backend/control_flow_builder.cc
 )
 
 target_include_directories(
