@@ -23,7 +23,7 @@ enum expression_op
 static char expression_op_to_string(expression_op op)
 {
   static const std::array<const char, 4> mapper = {'+', '-', '/', '*'};
-  return mapper[static_cast<int>(op)];
+  return mapper[static_cast<size_t>(op)];
 }
 
 class expression

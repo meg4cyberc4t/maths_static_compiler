@@ -12,28 +12,29 @@ ssa_position control_flow_builder::add_expression(
     const frontend::expression& expr)
 {
   ssa_position position;
-  if (auto expr_ptr = dynamic_cast<const frontend::binary_expression*>(&expr)) {
-    position = add_expression(*expr_ptr);
-  } else if (auto expr_ptr =
+  if (auto binary_expr_ptr =
+          dynamic_cast<const frontend::binary_expression*>(&expr))
+  {
+    position = add_expression(*binary_expr_ptr);
+  } else if (auto grouping_expr_ptr =
                  dynamic_cast<const frontend::grouping_expression*>(&expr))
   {
-    position = add_expression(*expr_ptr);
-  } else if (auto expr_ptr =
+    position = add_expression(*grouping_expr_ptr);
+  } else if (auto number_expr_ptr =
                  dynamic_cast<const frontend::number_expression*>(&expr))
   {
-    position = add_expression(*expr_ptr);
-  } else if (auto expr_ptr =
+    position = add_expression(*number_expr_ptr);
+  } else if (auto variable_expr_ptr =
                  dynamic_cast<const frontend::variable_expression*>(&expr))
   {
-    position = add_expression(*expr_ptr);
-  } else if (auto expr_ptr =
+    position = add_expression(*variable_expr_ptr);
+  } else if (auto unary_expr_ptr =
                  dynamic_cast<const frontend::unary_expression*>(&expr))
   {
-    position = add_expression(*expr_ptr);
+    position = add_expression(*unary_expr_ptr);
   } else {
     throw control_flow_error(
         "No implemented for this expression");  // UNREACHABLE
-    position = -1;
   }
   m_data.out_index = m_data.control_flow_index - 1;
   return position;
@@ -196,7 +197,7 @@ void control_flow_builder::dead_code_elimination()
       worked_positions.push_back(expr.m_right);
     }
   }
-  for (int i = 0; i < m_data.control_flow_index; i++) {
+  for (ssa_position i = 0; i < m_data.control_flow_index; i++) {
     if (marked_positions.contains(i)) {
       continue;
     }

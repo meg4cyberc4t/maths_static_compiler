@@ -18,7 +18,7 @@ class expression
 public:
   virtual ~expression() = default;
 
-  virtual bool operator==(const expression& other) const { return true; }
+  virtual bool operator==(const expression& _) const { return true; }
 
   virtual boost::json::object to_json() const = 0;
 };

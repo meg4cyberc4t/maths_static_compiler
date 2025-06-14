@@ -35,7 +35,7 @@ static const char* token_type_to_string(token_type type)
                                                     "number",
                                                     "variable",
                                                     "eof"};
-  return mapper[static_cast<int>(type)];
+  return mapper[static_cast<size_t>(type)];
 }
 
 struct token
