@@ -85,7 +85,6 @@ struct control_flow_data
   std::map<ssa_position, std::string> variables;
   std::map<ssa_position, backend::expression> expressions;
   std::map<ssa_position, std::set<ssa_position>> uses;
-  // decision tree;
   ssa_position control_flow_index = 3;
   ssa_position out_index;
 };
