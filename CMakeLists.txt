@@ -35,6 +35,7 @@ add_library(
     source/frontend/parsing/parser.h
     source/backend/control_flow_builder.h
     source/backend/control_flow_builder.cc
+    source/backend/executor.h
 )
 
 target_include_directories(

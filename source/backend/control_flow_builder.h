@@ -43,6 +43,12 @@ public:
         <=> std::tie(other.m_left, other.m_operator, other.m_right);
   }
 
+  constexpr ssa_position get_left() const { return m_left; }
+
+  constexpr expression_op get_operator() const { return m_operator; }
+
+  constexpr ssa_position get_right() const { return m_right; }
+
 private:
   void replace_position(ssa_position old_pos, ssa_position new_pos)
   {
@@ -66,28 +72,29 @@ private:
   friend class control_flow_builder;
 };
 
+struct control_flow_data
+{
+  std::map<ssa_position, double> defines = {
+#define MINUS_ONE_SSA_POSITION 0
+      {MINUS_ONE_SSA_POSITION, -1},
+#define ZERO_SSA_POSITION 1
+      {ZERO_SSA_POSITION, 0},
+#define ONE_SSA_POSITION 2
+      {ONE_SSA_POSITION, 1},
+  };
+  std::map<ssa_position, std::string> variables;
+  std::map<ssa_position, backend::expression> expressions;
+  std::map<ssa_position, std::set<ssa_position>> uses;
+  // decision tree;
+  ssa_position control_flow_index = 3;
+  ssa_position out_index;
+};
+
 class control_flow_builder
 {
-  struct control_flow_data
-  {
-    std::map<ssa_position, double> defines = {
-#define MINUS_ONE_SSA_POSITION 0
-        {MINUS_ONE_SSA_POSITION, -1},
-#define ZERO_SSA_POSITION 1
-        {ZERO_SSA_POSITION, 0},
-#define ONE_SSA_POSITION 2
-        {ONE_SSA_POSITION, 1},
-    };
-    std::map<ssa_position, std::string> variables;
-    std::map<ssa_position, backend::expression> expressions;
-    std::map<ssa_position, std::set<ssa_position>> uses;
+  control_flow_data m_data;
 
-    ssa_position control_flow_index = 3;
-    ssa_position out_index;
-  };
-
-  control_flow_data data;
-
+  ssa_position add_expression(const frontend::expression& expr);
   ssa_position add_expression(const frontend::binary_expression& expr);
   ssa_position add_expression(const frontend::grouping_expression& expr);
   ssa_position add_expression(const frontend::number_expression& expr);
@@ -101,18 +108,15 @@ class control_flow_builder
   void dead_code_elimination();
 
 public:
-  explicit control_flow_builder() {}
-
-  ssa_position add_expression(const frontend::expression& expr);
-
-  void optimize()
+  explicit control_flow_builder(const frontend::expression& expr)
   {
+    add_expression(expr);
     copy_propagation();
     algebraic_simplification();
     dead_code_elimination();
   }
 
-  void execute();
+  control_flow_data get_data() const { return m_data; }
 };
 
 }  // namespace backend

@@ -5,6 +5,7 @@
 
 #include "args.cc"
 #include "backend/control_flow_builder.h"
+#include "backend/executor.h"
 #include "exceptions.h"
 #include "frontend/parsing/expression.h"
 #include "frontend/parsing/parser.h"
@@ -52,19 +53,18 @@ public:
         print_syntax_tree(expr.get());
       }
 
-      auto cfb = backend::control_flow_builder();
+      auto cfb = backend::control_flow_builder(*expr);
 
-      cfb.add_expression(*expr);
+      auto exec = backend::executor();
+      auto result = exec.execute(cfb.get_data());
 
-      cfb.optimize();
+      std::cout << "Result: " << result << '\n';
 
-      cfb.execute();
-
+      return 0;
     } catch (const std::exception& exception) {
       std::cerr << exception.what();
       return 1;
     }
-    return 0;
   }
 
 private:
