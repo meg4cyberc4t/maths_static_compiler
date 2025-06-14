@@ -45,10 +45,13 @@ ssa_position control_flow_builder::add_expression(
 {
   auto value = expr.get_value();
   m_data.uses[m_data.control_flow_index] = {};
-  auto it =
-      std::find_if(m_data.defines.begin(),
-                   m_data.defines.end(),
-                   [&](const auto& pair) { return pair.second == value; });
+  auto it = std::find_if(m_data.defines.begin(),
+                         m_data.defines.end(),
+                         [&](const auto& pair)
+                         {
+                           return (std::fabs(pair.second - value)
+                                   < std::numeric_limits<double>::epsilon());
+                         });
   if (it != m_data.defines.end()) {
     return it->first;
   } else {
