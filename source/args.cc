@@ -10,7 +10,7 @@
 
 namespace po = boost::program_options;
 
-struct ArgsOptions
+struct args_options
 {
   bool help;
   bool version;
@@ -40,14 +40,14 @@ static inline po::options_description generate_description()
   return desc;
 }
 
-static inline ArgsOptions parse_options(int argc,
-                                        const char* const* argv,
-                                        po::options_description desc)
+static inline args_options parse_options(int argc,
+                                         const char* const* argv,
+                                         po::options_description desc)
 {
   po::variables_map vm;
   po::store(po::parse_command_line(argc, argv, desc), vm);
   po::notify(vm);
-  return ArgsOptions {
+  return args_options {
       .help = vm.count("help") > 0,
       .version = vm.count("version") > 0,
       .input_line = vm.count("input-line")

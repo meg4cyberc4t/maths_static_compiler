@@ -13,10 +13,10 @@
 #include "frontend/scanning/lexer.h"
 #include "vars.h"
 
-class Program
+class program
 {
 public:
-  Program(int argc, const char* const* argv)
+  program(int argc, const char* const* argv)
       : description {generate_description()}
       , options {parse_options(argc, argv, description)}
   {
@@ -119,10 +119,10 @@ private:
 
 private:
   boost::program_options::options_description description;
-  ArgsOptions options;
+  args_options options;
 };
 
 int main(int argc, const char* const* argv)
 {
-  return Program(argc, argv).exec();
+  return program(argc, argv).exec();
 }
