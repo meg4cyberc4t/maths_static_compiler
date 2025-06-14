@@ -18,7 +18,7 @@ class executor
   }
 
 public:
-  executor() {}
+  explicit executor() {}
 
   double execute(control_flow_data data)
   {
@@ -31,14 +31,14 @@ public:
       memory.insert(std::make_pair(pos, define));
       std::cout << "%" << pos << " = " << define << '\n';
     }
-    while (true) {
+
+    do {
       for (auto& [pos, expression] : data.expressions) {
         if (memory.contains(expression.get_left())
             && memory.contains(expression.get_right()))
         {
-          double left = memory.at(expression.get_left());
-          double right = memory.at(expression.get_right());
-          double define;
+          double left = memory.at(expression.get_left()),
+                 right = memory.at(expression.get_right()), define;
           switch (expression.get_operator()) {
             case expression_op::add:
               define = left + right;
@@ -63,7 +63,8 @@ public:
           }
         }
       }
-    }
+    } while (!memory.contains(data.out_index));
+    return memory.at(data.out_index);
   }
 };
 }  // namespace backend
