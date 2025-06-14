@@ -23,20 +23,19 @@ include(cmake/variables.cmake)
 
 # ---- Declare library ----
 
-set(
-  FRONTEND_FILES 
-    source/frontend/exceptions.h 
+
+add_library(
+    maths_static_compiler_lib OBJECT
+    source/exceptions.h 
     source/frontend/scanning/token.h 
     source/frontend/scanning/lexer.h 
     source/frontend/scanning/lexer.cc
     source/frontend/parsing/expression.h
     source/frontend/parsing/expression.cc
     source/frontend/parsing/parser.h
-)
-
-add_library(
-    maths_static_compiler_lib OBJECT
-    ${FRONTEND_FILES}
+    source/backend/control_flow_builder.h
+    source/backend/control_flow_builder.cc
+    source/backend/executor.h
 )
 
 target_include_directories(
@@ -48,10 +47,10 @@ target_include_directories(
 target_compile_features(maths_static_compiler_lib PUBLIC cxx_std_20)
 
 find_package(fmt REQUIRED)
-find_package(Boost 1.87.0 COMPONENTS program_options)
+find_package(Boost 1.87.0 COMPONENTS program_options json)
 
 include_directories(${Boost_INCLUDE_DIRS})
-target_link_libraries(maths_static_compiler_lib PRIVATE fmt::fmt Boost::program_options)
+target_link_libraries(maths_static_compiler_lib PRIVATE fmt::fmt Boost::program_options Boost::json)
 set_target_properties(maths_static_compiler_lib PROPERTIES LINKER_LANGUAGE CXX)
 # ---- Declare executable ----
 

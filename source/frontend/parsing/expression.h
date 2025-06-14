@@ -5,19 +5,22 @@
 #include <limits>
 #include <memory>
 
+#include <boost/json.hpp>
 #include <frontend/scanning/token.h>
 #include <math.h>
 
 namespace frontend
 {
+
 class expression
+
 {
 public:
   virtual ~expression() = default;
 
-  virtual auto to_string(std::size_t indent) -> std::string = 0;
+  virtual bool operator==(const expression& _) const { return true; }
 
-  virtual bool operator==(const expression& other) const { return true; }
+  virtual boost::json::object to_json() const = 0;
 };
 
 class binary_expression : public expression
@@ -32,8 +35,6 @@ public:
   {
   }
 
-  auto to_string(std::size_t indent) -> std::string override;
-
   bool operator==(const expression& other) const override
   {
     const binary_expression* other_casted =
@@ -46,6 +47,14 @@ public:
             && *m_right == *other_casted->m_right
             && m_token == other_casted->m_token);
   }
+
+  constexpr expression* get_left() const { return m_left.get(); }
+
+  token get_token() const { return m_token; }
+
+  constexpr expression* get_right() const { return m_right.get(); }
+
+  boost::json::object to_json() const override;
 
 private:
   const std::unique_ptr<expression> m_left;
@@ -61,8 +70,6 @@ public:
   {
   }
 
-  auto to_string(std::size_t indent) -> std::string override;
-
   bool operator==(const expression& other) const override
   {
     const grouping_expression* other_casted =
@@ -72,6 +79,10 @@ public:
     }
     return expression::operator==(other) && *m_expr == *other_casted->m_expr;
   }
+
+  expression* get_expr() const { return m_expr.get(); }
+
+  boost::json::object to_json() const override;
 
 private:
   const std::unique_ptr<expression> m_expr;
@@ -85,8 +96,6 @@ public:
   {
   }
 
-  auto to_string(std::size_t indent) -> std::string override;
-
   bool operator==(const expression& other) const override
   {
     const number_expression* other_casted =
@@ -99,6 +108,10 @@ public:
             < std::numeric_limits<double>::epsilon());
   }
 
+  constexpr double get_value() const { return m_value; }
+
+  boost::json::object to_json() const override;
+
 private:
   double m_value;
 };
@@ -110,8 +123,6 @@ public:
       : m_token(std::move(token))
   {
   }
-
-  auto to_string(std::size_t indent) -> std::string override;
 
   bool operator==(const expression* other) const
   {
@@ -131,6 +142,10 @@ public:
     return expression::operator==(other) && (m_token == other_casted->m_token);
   }
 
+  token get_token() const { return m_token; }
+
+  boost::json::object to_json() const override;
+
 private:
   token m_token;
 };
@@ -144,8 +159,6 @@ public:
   {
   }
 
-  auto to_string(std::size_t indent) -> std::string override;
-
   bool operator==(const expression& other) const override
   {
     const unary_expression* other_casted =
@@ -157,6 +170,12 @@ public:
         && (*m_expr == *other_casted->m_expr
             && m_token == other_casted->m_token);
   }
+
+  constexpr expression* get_expr() const { return m_expr.get(); }
+
+  token get_token() const { return m_token; }
+
+  boost::json::object to_json() const override;
 
 private:
   const std::unique_ptr<expression> m_expr;

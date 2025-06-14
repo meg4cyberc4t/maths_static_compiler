@@ -5,51 +5,48 @@
 
 namespace frontend
 {
-auto binary_expression::to_string(std::size_t indent) -> std::string
+
+boost::json::object binary_expression::to_json() const
 {
-  // binary_expression:
-  //  left – ...
-  //  token - ..
-  //  right - ...
-  return "binary_expression:\n" + std::string(indent, ' ') + "left – "
-      + this->m_left->to_string(indent + 1) + "\n" + std::string(indent, ' ')
-      + "token – " + this->m_token.get_lexeme() + "\n"
-      + std::string(indent, ' ') + "right – "
-      + this->m_right->to_string(indent + 1);
+  boost::json::object obj;
+  obj["type"] = "binary";
+  obj["left"] = m_left->to_json();
+  obj["token_type"] = token_type_to_string(m_token.get_type());
+  obj["right"] = m_right->to_json();
+  return obj;
 }
 
-auto grouping_expression::to_string(std::size_t indent) -> std::string
+boost::json::object grouping_expression::to_json() const
 {
-  // grouping_expression:
-  //  expr – ...
-  return "grouping_expression:\n" + std::string(indent, ' ') + "expr – "
-      + this->m_expr->to_string(indent + 1);
+  boost::json::object obj;
+  obj["type"] = "grouping";
+  obj["expr"] = m_expr->to_json();
+  return obj;
 }
 
-auto number_expression::to_string(std::size_t indent) -> std::string
+boost::json::object number_expression::to_json() const
 {
-  // number_expression:
-  //  number – ...
-  return "number_expression:\n" + std::string(indent, ' ') + "number – "
-      + std::to_string(this->m_value);
+  boost::json::object obj;
+  obj["type"] = "number";
+  obj["value"] = std::to_string(m_value);
+  return obj;
 }
 
-auto variable_expression::to_string(std::size_t indent) -> std::string
+boost::json::object variable_expression::to_json() const
 {
-  // variable_expression:
-  //  variable – ...
-  return "variable_expression:\n" + std::string(indent, ' ') + "variable – "
-      + this->m_token.get_lexeme();
+  boost::json::object obj;
+  obj["type"] = "variable";
+  obj["lexeme"] = m_token.get_lexeme();
+  return obj;
 }
 
-auto unary_expression::to_string(std::size_t indent) -> std::string
+boost::json::object unary_expression::to_json() const
 {
-  // binary_expression:
-  //  token – ...
-  //  expr - ..
-  return "unary_expression:\n" + std::string(indent, ' ') + "token – "
-      + this->m_token.get_lexeme() + "\n" + std::string(indent, ' ') + "expr – "
-      + this->m_expr->to_string(indent + 1);
+  boost::json::object obj;
+  obj["type"] = "unary";
+  obj["token_type"] = token_type_to_string(m_token.get_type());
+  obj["expr"] = m_expr->to_json();
+  return obj;
 }
 
 }  // namespace frontend

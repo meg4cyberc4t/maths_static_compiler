@@ -36,5 +36,5 @@ TEST_CASE("Incorrect lexemes cause an error", "[lexer]")
 {
   std::string line = "1 + 11.00 - & 1000 / var123 * (5 - 2)";
   auto lexer = frontend::lexer(line);
-  REQUIRE_THROWS_AS(lexer.scan_tokens(), unknown_literal_exception);
+  REQUIRE_THROWS_AS(lexer.scan_tokens(), unknown_literal_error);
 }

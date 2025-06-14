@@ -5,7 +5,7 @@
 #include <memory>
 #include <vector>
 
-#include <frontend/exceptions.h>
+#include <exceptions.h>
 #include <frontend/parsing/expression.h>
 #include <frontend/scanning/token.h>
 

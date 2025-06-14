@@ -15,13 +15,11 @@ TEST_CASE("Checking the operation of factor expressions", "[parser]")
   };
   auto parser = frontend::parser(tokens);
   std::unique_ptr<expression> expr_ptr = parser.parse();
-  INFO(expr_ptr->to_string(0));
 
   auto expected_expression = binary_expression(
       std::make_unique<number_expression>(number_expression(9.3)),
       token(token_type::add, "+", 1),
       std::make_unique<number_expression>(number_expression(10.12)));
-  INFO(expected_expression.to_string(0));
 
   REQUIRE(expected_expression == *expr_ptr);
 }
