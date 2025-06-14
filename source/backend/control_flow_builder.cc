@@ -30,7 +30,7 @@ ssa_position control_flow_builder::add_expression(
   {
     position = add_expression(*expr_ptr);
   } else {
-    throw control_flow_exception(
+    throw control_flow_error(
         "No implemented for this expression");  // UNREACHABLE
     position = -1;
   }
@@ -78,7 +78,7 @@ ssa_position control_flow_builder::add_expression(
 
   auto type = expr.get_token().get_type();
   if (!expression_map.contains(type)) {
-    throw control_flow_exception(
+    throw control_flow_error(
         "Not implemented binary expression construction for this operator");
   }
   const auto b_expr =
@@ -97,7 +97,7 @@ ssa_position control_flow_builder::add_expression(
 
   auto type = expr.get_token().get_type();
   if (type != frontend::token_type::subtract) {
-    throw control_flow_exception(
+    throw control_flow_error(
         "Not implemented unary expression construction for this operator");
   }
   const auto b_expr =

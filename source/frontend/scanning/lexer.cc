@@ -62,7 +62,7 @@ void lexer::scan_token()
     number();
     return;
   }
-  throw unknown_literal_exception(m_source, m_start_index);
+  throw unknown_literal_error(m_source, m_start_index);
 }
 
 void lexer::variable()
