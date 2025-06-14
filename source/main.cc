@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 
+#include <boost/json.hpp>
 #include <boost/program_options.hpp>
 
 #include "args.cc"
@@ -31,32 +32,45 @@ public:
     }
 
     try {
+      boost::json::object json_debug_obj;
+
       const auto input_expression = get_input_expression();
 
       // Syntactic analysis
       auto lexer = frontend::lexer(input_expression);
       auto tokens = lexer.scan_tokens();
 
-      // Print tokens
-      if (options.print_tokens || options.print_tokens_filename.has_value()) {
-        print_tokens(tokens);
+      boost::json::array tokens_serialized;
+      for (auto token : tokens) {
+        tokens_serialized.push_back(token.to_json());
       }
+
+      json_debug_obj["tokens"] = tokens_serialized;
 
       // Semantic analysis
       auto parser = frontend::parser(tokens);
       auto expr = parser.parse();
+      json_debug_obj["syntax_expression_tree"] = expr->to_json();
 
-      // Print AST
-      if (options.print_syntax_tree
-          || options.print_syntax_tree_filename.has_value())
-      {
-        print_syntax_tree(expr.get());
-      }
-
+      // Optimizations
       auto cfb = backend::control_flow_builder(*expr);
 
       auto exec = backend::executor();
       auto result = exec.execute(cfb.get_data());
+      json_debug_obj["cfd"] = cfb.get_data().to_json();
+      json_debug_obj["result"] = std::to_string(result);
+
+      // Write additional information to file
+      if (options.json_debug_filename.has_value()) {
+        auto json_debug_filename = options.json_debug_filename.value();
+        std::ofstream json_debug_file(json_debug_filename);
+        if (!json_debug_file.is_open()) {
+          throw std::invalid_argument("Unable to open file "
+                                      + json_debug_filename);
+        }
+        json_debug_file << json_debug_obj;
+        json_debug_file.close();
+      }
 
       std::cout << "Result: " << result << '\n';
 
@@ -101,48 +115,6 @@ private:
     std::cout << "Input the source line:" << std::endl;
     std::getline(std::cin, input_line);
     return input_line;
-  }
-
-  // Output of tokens
-  void print_tokens(std::vector<frontend::token> tokens) const
-  {
-    std::stringstream token_string_stream;
-    for (auto token : tokens) {
-      token_string_stream << token.to_string() + '\n';
-    }
-
-    if (options.print_tokens) {
-      std::cout << token_string_stream.str();
-    }
-
-    if (options.print_tokens_filename.has_value()) {
-      auto tokens_filename = options.print_tokens_filename.value();
-      std::ofstream tokens_file(tokens_filename);
-      if (!tokens_file.is_open()) {
-        throw std::make_exception_ptr("Unable to open file " + tokens_filename);
-      }
-      tokens_file << token_string_stream.str();
-      tokens_file.close();
-    }
-  }
-
-  // Output of abstract syntax tree
-  void print_syntax_tree(frontend::expression* expr) const
-  {
-    auto syntax_tree = expr->to_string(0);
-    if (options.print_syntax_tree) {
-      std::cout << syntax_tree;
-    }
-    if (options.print_syntax_tree_filename.has_value()) {
-      auto syntax_tree_filename = options.print_syntax_tree_filename.value();
-      std::ofstream syntax_tree_file(syntax_tree_filename);
-      if (!syntax_tree_file.is_open()) {
-        throw std::make_exception_ptr("Unable to open file "
-                                      + syntax_tree_filename);
-      }
-      syntax_tree_file << syntax_tree;
-      syntax_tree_file.close();
-    }
   }
 
 private:

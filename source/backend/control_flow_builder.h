@@ -87,6 +87,8 @@ struct control_flow_data
   std::map<ssa_position, std::set<ssa_position>> uses;
   ssa_position control_flow_index = 3;
   ssa_position out_index;
+
+  boost::json::object to_json() const;
 };
 
 class control_flow_builder
@@ -105,6 +107,7 @@ class control_flow_builder
   void copy_propagation();
   void algebraic_simplification();
   void dead_code_elimination();
+  void defragment_indexes();
 
 public:
   explicit control_flow_builder(const frontend::expression& expr)

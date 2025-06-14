@@ -16,12 +16,7 @@ struct ArgsOptions
   bool version;
 
   std::optional<std::string> input_line;
-  // std::optional<std::string> output_file;
-
-  bool print_tokens;
-  std::optional<std::string> print_tokens_filename;
-  bool print_syntax_tree;
-  std::optional<std::string> print_syntax_tree_filename;
+  std::optional<std::string> json_debug_filename;
 };
 
 static inline po::options_description generate_description()
@@ -35,23 +30,12 @@ static inline po::options_description generate_description()
       "version,v", "Produce version string")(
       "input-line,i",
       po::value<std::string>(),
-      "Entering a mathematical expression in a line, e.g. (1 + 2) * 3")
-      // ("output-file,o", po::value<std::string>(), "Enter the name of the file
-      // to output, e.g. filename.txt")
-      ;
-
+      "Entering a mathematical expression in a line, e.g. (1 + 2) * 3");
   po::options_description debug_desc("Debug options");
   debug_desc.add_options()(
-      "print-tokens",
-      "Extract tokens from an expression after lexical analysis")(
-      "print-tokens-filename",
+      "json-debug-file,o",
       po::value<std::string>(),
-      "Extract tokens from an expression after lexical analysis to the file")(
-      "print-syntax-tree",
-      "Extract AST from list of tokens after syntax analysis")(
-      "print-syntax-tree-filename",
-      po::value<std::string>(),
-      "Extract AST from list of tokens after syntax analysis to the file");
+      "Enter the name of the file to output, e.g. filename.txt");
   desc.add(debug_desc);
   return desc;
 }
@@ -69,16 +53,8 @@ static inline ArgsOptions parse_options(int argc,
       .input_line = vm.count("input-line")
           ? vm.at("input-line").as<std::string>()
           : std::optional<std::string>(std::nullopt),
-      //   .output_file = vm.count("output-file") ?
-      //   vm.at("output-line").as<std::string>() :
-      //   std::optional<std::string>(std::nullopt),
-      .print_tokens = vm.count("print-tokens") > 0,
-      .print_tokens_filename = vm.count("print-tokens-filename")
-          ? vm.at("print-tokens-filename").as<std::string>()
-          : std::optional<std::string>(std::nullopt),
-      .print_syntax_tree = vm.count("print-syntax-tree") > 0,
-      .print_syntax_tree_filename = vm.count("print-syntax-tree-filename")
-          ? vm.at("print-syntax-tree-filename").as<std::string>()
+      .json_debug_filename = vm.count("json-debug-file")
+          ? vm.at("json-debug-file").as<std::string>()
           : std::optional<std::string>(std::nullopt),
   };
 }

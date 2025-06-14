@@ -5,6 +5,7 @@
 #include <limits>
 #include <memory>
 
+#include <boost/json.hpp>
 #include <frontend/scanning/token.h>
 #include <math.h>
 
@@ -17,9 +18,9 @@ class expression
 public:
   virtual ~expression() = default;
 
-  virtual auto to_string(std::size_t indent) -> std::string = 0;
-
   virtual bool operator==(const expression& other) const { return true; }
+
+  virtual boost::json::object to_json() const = 0;
 };
 
 class binary_expression : public expression
@@ -33,8 +34,6 @@ public:
       , m_right(std::move(right))
   {
   }
-
-  auto to_string(std::size_t indent) -> std::string override;
 
   bool operator==(const expression& other) const override
   {
@@ -55,6 +54,8 @@ public:
 
   constexpr expression* get_right() const { return m_right.get(); }
 
+  boost::json::object to_json() const override;
+
 private:
   const std::unique_ptr<expression> m_left;
   const token m_token;
@@ -69,8 +70,6 @@ public:
   {
   }
 
-  auto to_string(std::size_t indent) -> std::string override;
-
   bool operator==(const expression& other) const override
   {
     const grouping_expression* other_casted =
@@ -83,6 +82,8 @@ public:
 
   expression* get_expr() const { return m_expr.get(); }
 
+  boost::json::object to_json() const override;
+
 private:
   const std::unique_ptr<expression> m_expr;
 };
@@ -94,8 +95,6 @@ public:
       : m_value(value)
   {
   }
-
-  auto to_string(std::size_t indent) -> std::string override;
 
   bool operator==(const expression& other) const override
   {
@@ -111,6 +110,8 @@ public:
 
   constexpr double get_value() const { return m_value; }
 
+  boost::json::object to_json() const override;
+
 private:
   double m_value;
 };
@@ -122,8 +123,6 @@ public:
       : m_token(std::move(token))
   {
   }
-
-  auto to_string(std::size_t indent) -> std::string override;
 
   bool operator==(const expression* other) const
   {
@@ -145,6 +144,8 @@ public:
 
   token get_token() const { return m_token; }
 
+  boost::json::object to_json() const override;
+
 private:
   token m_token;
 };
@@ -157,8 +158,6 @@ public:
       , m_token(std::move(token))
   {
   }
-
-  auto to_string(std::size_t indent) -> std::string override;
 
   bool operator==(const expression& other) const override
   {
@@ -175,6 +174,8 @@ public:
   constexpr expression* get_expr() const { return m_expr.get(); }
 
   token get_token() const { return m_token; }
+
+  boost::json::object to_json() const override;
 
 private:
   const std::unique_ptr<expression> m_expr;

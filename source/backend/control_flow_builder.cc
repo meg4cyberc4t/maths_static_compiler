@@ -1,6 +1,7 @@
 
 #include "control_flow_builder.h"
 
+#include "boost/json.hpp"
 #include "exceptions.h"
 #include "frontend/parsing/expression.h"
 
@@ -123,6 +124,16 @@ void control_flow_builder::replace_position(ssa_position old_position,
         .replace_position(old_position, new_position);
   }
   m_data.uses.erase(old_position);
+  if (m_data.variables.contains(old_position)) {
+    m_data.variables.insert(
+        std::make_pair(new_position, m_data.variables.at(old_position)));
+    m_data.variables.erase(old_position);
+  }
+  if (m_data.defines.contains(old_position)) {
+    m_data.defines.insert(
+        std::make_pair(new_position, m_data.defines.at(old_position)));
+    m_data.defines.erase(old_position);
+  }
   if (m_data.out_index == old_position) {
     m_data.out_index = new_position;
   }
@@ -200,5 +211,22 @@ void control_flow_builder::dead_code_elimination()
     m_data.uses.erase(i);
   }
 }
+
+boost::json::object control_flow_data::to_json() const
+{
+  boost::json::object obj;
+  for (auto& [position, define] : defines) {
+    obj["%" + std::to_string(position)] = std::to_string(define);
+  }
+  for (auto& [position, variable] : variables) {
+    obj["%" + std::to_string(position)] = variable;
+  }
+  for (auto& [position, expr] : expressions) {
+    obj["%" + std::to_string(position)] = "%" + std::to_string(expr.get_left())
+        + " " + expression_op_to_string(expr.get_operator()) + " %"
+        + std::to_string(expr.get_right());
+  }
+  return obj;
+};
 
 }  // namespace backend

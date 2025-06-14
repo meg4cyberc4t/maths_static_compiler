@@ -47,10 +47,10 @@ target_include_directories(
 target_compile_features(maths_static_compiler_lib PUBLIC cxx_std_20)
 
 find_package(fmt REQUIRED)
-find_package(Boost 1.87.0 COMPONENTS program_options)
+find_package(Boost 1.87.0 COMPONENTS program_options json)
 
 include_directories(${Boost_INCLUDE_DIRS})
-target_link_libraries(maths_static_compiler_lib PRIVATE fmt::fmt Boost::program_options)
+target_link_libraries(maths_static_compiler_lib PRIVATE fmt::fmt Boost::program_options Boost::json)
 set_target_properties(maths_static_compiler_lib PROPERTIES LINKER_LANGUAGE CXX)
 # ---- Declare executable ----
 
