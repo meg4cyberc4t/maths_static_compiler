@@ -39,6 +39,11 @@ public:
 
   constexpr auto operator<=>(const expression& other) const
   {
+    if (m_operator == other.m_operator && m_left == other.m_right
+        && m_right == other.m_left)
+    {
+      return std::strong_ordering::equal;
+    }
     return std::tie(m_left, m_operator, m_right)
         <=> std::tie(other.m_left, other.m_operator, other.m_right);
   }
