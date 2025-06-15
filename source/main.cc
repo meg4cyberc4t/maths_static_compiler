@@ -44,7 +44,6 @@ public:
       for (auto token : tokens) {
         tokens_serialized.push_back(token.to_json());
       }
-
       json_debug_obj["tokens"] = tokens_serialized;
 
       // Semantic analysis
