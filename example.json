@@ -1,1 +1,270 @@
-{"tokens":[{"type":"open_bracket","lexeme":"(","pos":0},{"type":"number","lexeme":"10","pos":1},{"type":"add","lexeme":"+","pos":3},{"type":"number","lexeme":"20","pos":4},{"type":"close_bracket","lexeme":")","pos":6},{"type":"delimiter","lexeme":"/","pos":8},{"type":"open_bracket","lexeme":"(","pos":10},{"type":"number","lexeme":"20","pos":11},{"type":"add","lexeme":"+","pos":13},{"type":"number","lexeme":"10","pos":14},{"type":"close_bracket","lexeme":")","pos":16},{"type":"add","lexeme":"+","pos":18},{"type":"number","lexeme":"150","pos":20},{"type":"multiply","lexeme":"*","pos":23},{"type":"number","lexeme":"32","pos":24},{"type":"multiply","lexeme":"*","pos":26},{"type":"open_bracket","lexeme":"(","pos":27},{"type":"number","lexeme":"150","pos":28},{"type":"multiply","lexeme":"*","pos":31},{"type":"number","lexeme":"2","pos":32},{"type":"subtract","lexeme":"-","pos":33},{"type":"number","lexeme":"300","pos":34},{"type":"close_bracket","lexeme":")","pos":37},{"type":"add","lexeme":"+","pos":39},{"type":"open_bracket","lexeme":"(","pos":41},{"type":"number","lexeme":"3","pos":42},{"type":"multiply","lexeme":"*","pos":44},{"type":"variable","lexeme":"x","pos":46},{"type":"close_bracket","lexeme":")","pos":47},{"type":"eof","lexeme":"","pos":48}],"syntax_expression_tree":{"type":"binary","left":{"type":"binary","left":{"type":"binary","left":{"type":"grouping","expr":{"type":"binary","left":{"type":"number","value":"10.000000"},"token_type":"add","right":{"type":"number","value":"20.000000"}}},"token_type":"delimiter","right":{"type":"grouping","expr":{"type":"binary","left":{"type":"number","value":"20.000000"},"token_type":"add","right":{"type":"number","value":"10.000000"}}}},"token_type":"add","right":{"type":"binary","left":{"type":"binary","left":{"type":"number","value":"150.000000"},"token_type":"multiply","right":{"type":"number","value":"32.000000"}},"token_type":"multiply","right":{"type":"grouping","expr":{"type":"binary","left":{"type":"binary","left":{"type":"number","value":"150.000000"},"token_type":"multiply","right":{"type":"number","value":"2.000000"}},"token_type":"subtract","right":{"type":"number","value":"300.000000"}}}}},"token_type":"add","right":{"type":"grouping","expr":{"type":"binary","left":{"type":"number","value":"3.000000"},"token_type":"multiply","right":{"type":"variable","lexeme":"x"}}}},"cfd":{"%3":"10.000000","%4":"20.000000","%8":"150.000000","%9":"32.000000","%11":"2.000000","%13":"300.000000","%17":"3.000000","%18":"x","%5":"%3 + %4","%7":"%5 / %5","%10":"%8 * %9","%12":"%8 * %11","%14":"%12 - %13","%15":"%10 * %14","%16":"%7 + %15","%19":"%17 * %18","%20":"%16 + %19"},"result":"31.000000"}
+{
+    "tokens": [
+        {
+            "type": "open_bracket",
+            "lexeme": "(",
+            "pos": 0
+        },
+        {
+            "type": "number",
+            "lexeme": "10",
+            "pos": 1
+        },
+        {
+            "type": "add",
+            "lexeme": "+",
+            "pos": 3
+        },
+        {
+            "type": "number",
+            "lexeme": "20",
+            "pos": 4
+        },
+        {
+            "type": "close_bracket",
+            "lexeme": ")",
+            "pos": 6
+        },
+        {
+            "type": "delimiter",
+            "lexeme": "/",
+            "pos": 8
+        },
+        {
+            "type": "open_bracket",
+            "lexeme": "(",
+            "pos": 10
+        },
+        {
+            "type": "number",
+            "lexeme": "20",
+            "pos": 11
+        },
+        {
+            "type": "add",
+            "lexeme": "+",
+            "pos": 13
+        },
+        {
+            "type": "number",
+            "lexeme": "10",
+            "pos": 14
+        },
+        {
+            "type": "close_bracket",
+            "lexeme": ")",
+            "pos": 16
+        },
+        {
+            "type": "add",
+            "lexeme": "+",
+            "pos": 18
+        },
+        {
+            "type": "number",
+            "lexeme": "150",
+            "pos": 20
+        },
+        {
+            "type": "multiply",
+            "lexeme": "*",
+            "pos": 23
+        },
+        {
+            "type": "number",
+            "lexeme": "32",
+            "pos": 24
+        },
+        {
+            "type": "multiply",
+            "lexeme": "*",
+            "pos": 26
+        },
+        {
+            "type": "open_bracket",
+            "lexeme": "(",
+            "pos": 27
+        },
+        {
+            "type": "number",
+            "lexeme": "150",
+            "pos": 28
+        },
+        {
+            "type": "multiply",
+            "lexeme": "*",
+            "pos": 31
+        },
+        {
+            "type": "number",
+            "lexeme": "2",
+            "pos": 32
+        },
+        {
+            "type": "subtract",
+            "lexeme": "-",
+            "pos": 33
+        },
+        {
+            "type": "number",
+            "lexeme": "300",
+            "pos": 34
+        },
+        {
+            "type": "close_bracket",
+            "lexeme": ")",
+            "pos": 37
+        },
+        {
+            "type": "add",
+            "lexeme": "+",
+            "pos": 39
+        },
+        {
+            "type": "open_bracket",
+            "lexeme": "(",
+            "pos": 41
+        },
+        {
+            "type": "number",
+            "lexeme": "3",
+            "pos": 42
+        },
+        {
+            "type": "multiply",
+            "lexeme": "*",
+            "pos": 44
+        },
+        {
+            "type": "variable",
+            "lexeme": "x",
+            "pos": 46
+        },
+        {
+            "type": "close_bracket",
+            "lexeme": ")",
+            "pos": 47
+        },
+        {
+            "type": "eof",
+            "lexeme": "",
+            "pos": 48
+        }
+    ],
+    "syntax_expression_tree": {
+        "type": "binary",
+        "left": {
+            "type": "binary",
+            "left": {
+                "type": "binary",
+                "left": {
+                    "type": "grouping",
+                    "expr": {
+                        "type": "binary",
+                        "left": {
+                            "type": "number",
+                            "value": "10.000000"
+                        },
+                        "token_type": "add",
+                        "right": {
+                            "type": "number",
+                            "value": "20.000000"
+                        }
+                    }
+                },
+                "token_type": "delimiter",
+                "right": {
+                    "type": "grouping",
+                    "expr": {
+                        "type": "binary",
+                        "left": {
+                            "type": "number",
+                            "value": "20.000000"
+                        },
+                        "token_type": "add",
+                        "right": {
+                            "type": "number",
+                            "value": "10.000000"
+                        }
+                    }
+                }
+            },
+            "token_type": "add",
+            "right": {
+                "type": "binary",
+                "left": {
+                    "type": "binary",
+                    "left": {
+                        "type": "number",
+                        "value": "150.000000"
+                    },
+                    "token_type": "multiply",
+                    "right": {
+                        "type": "number",
+                        "value": "32.000000"
+                    }
+                },
+                "token_type": "multiply",
+                "right": {
+                    "type": "grouping",
+                    "expr": {
+                        "type": "binary",
+                        "left": {
+                            "type": "binary",
+                            "left": {
+                                "type": "number",
+                                "value": "150.000000"
+                            },
+                            "token_type": "multiply",
+                            "right": {
+                                "type": "number",
+                                "value": "2.000000"
+                            }
+                        },
+                        "token_type": "subtract",
+                        "right": {
+                            "type": "number",
+                            "value": "300.000000"
+                        }
+                    }
+                }
+            }
+        },
+        "token_type": "add",
+        "right": {
+            "type": "grouping",
+            "expr": {
+                "type": "binary",
+                "left": {
+                    "type": "number",
+                    "value": "3.000000"
+                },
+                "token_type": "multiply",
+                "right": {
+                    "type": "variable",
+                    "lexeme": "x"
+                }
+            }
+        }
+    },
+    "cfd": {
+        "%3": "10.000000",
+        "%4": "20.000000",
+        "%8": "150.000000",
+        "%9": "32.000000",
+        "%11": "2.000000",
+        "%13": "300.000000",
+        "%17": "3.000000",
+        "%18": "x",
+        "%5": "%3 + %4",
+        "%7": "%5 / %5",
+        "%10": "%8 * %9",
+        "%12": "%8 * %11",
+        "%14": "%12 - %13",
+        "%15": "%10 * %14",
+        "%16": "%7 + %15",
+        "%19": "%17 * %18",
+        "%20": "%16 + %19"
+    },
+    "result": "31.000000"
+}
